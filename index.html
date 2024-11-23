@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Listen to peaceful piano music on Spotify">
+    <title>The Quiet Hub</title>
+    
+    <!-- Preconnect to Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Existing styles - order matters -->
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- Existing meta tags -->
+    <meta property="og:title" content="The Quiet Hub">
+    <meta property="og:description" content="Peaceful Piano Playlist">
+    <meta property="og:image" content="path/to/your/preview-image.jpg">
+    <meta name="theme-color" content="#000000">
+    
+    <!-- Add this right after the meta tags -->
+    <link rel="preload" as="image" href="./images/solnedgang.jpg">
+</head>
+<body>
+    <header>
+        <h1>The Quiet Hub</h1>
+        <div class="header-line" aria-hidden="true"></div>
+    </header>
+
+    <main>
+        <a href="https://open.spotify.com/playlist/51FY41cuYWtjoeuY90aTkw?si=5ba0775c8e0e4a31" 
+           class="playlist-card" 
+           aria-label="Play Peaceful Piano playlist on Spotify"
+           rel="noopener">
+            <div class="playlist-image">
+                <img src="images/1.jpg" 
+                     alt="Peaceful Piano"
+                     width="250" 
+                     height="250">
+                <div class="play-button" aria-hidden="true"></div>
+            </div>
+            <h2 class="playlist-title">Peaceful Piano</h2>
+        </a>
+    </main>
+</body>
+</html>
