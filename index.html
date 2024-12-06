@@ -6,22 +6,30 @@
     <meta name="description" content="Listen to peaceful piano music on Spotify">
     <title>The Quiet Hub</title>
     
-    <!-- Preconnect to Google Fonts -->
+    <!-- Performance optimizations -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://open.spotify.com">
     
-    <!-- Existing styles - order matters -->
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&display=swap" rel="stylesheet">
+    <!-- Optimized font loading -->
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&display=swap" 
+          rel="stylesheet"
+          media="print" 
+          onload="this.media='all'">
+    
     <link rel="stylesheet" href="styles.css">
     
-    <!-- Existing meta tags -->
+    <!-- Essential meta tags -->
     <meta property="og:title" content="The Quiet Hub">
     <meta property="og:description" content="Peaceful Piano Playlist">
-    <meta property="og:image" content="path/to/your/preview-image.jpg">
-    <meta name="theme-color" content="#000000">
+    <meta name="theme-color" content="#464453">
     
-    <!-- Add this right after the meta tags -->
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="192x192" href="./images/quietlogo.png">
+    
+    <!-- Critical image preloading -->
     <link rel="preload" as="image" href="./images/solnedgang.jpg">
+    <link rel="preload" as="image" href="./images/1.jpg">
 </head>
 <body>
     <header>
@@ -33,13 +41,21 @@
         <a href="https://open.spotify.com/playlist/51FY41cuYWtjoeuY90aTkw?si=5ba0775c8e0e4a31" 
            class="playlist-card" 
            aria-label="Play Peaceful Piano playlist on Spotify"
+           target="_blank"
            rel="noopener">
-            <div class="playlist-image">
-                <img src="images/1.jpg" 
-                     alt="Peaceful Piano"
-                     width="250" 
-                     height="250">
-                <div class="play-button" aria-hidden="true"></div>
+            <div class="playlist-image-container">
+                <div class="playlist-image">
+                    <img src="images/1.jpg" 
+                         alt="Peaceful Piano"
+                         width="250" 
+                         height="250">
+                    <div class="spotify-logo-overlay">
+                        <img src="./images/spotifylogo.png" 
+                             alt="Spotify" 
+                             loading="lazy">
+                    </div>
+                    <div class="play-button" aria-hidden="true"></div>
+                </div>
             </div>
             <h2 class="playlist-title">Peaceful Piano</h2>
         </a>
