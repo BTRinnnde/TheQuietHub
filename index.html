@@ -30,8 +30,23 @@
     <!-- Critical image preloading -->
     <link rel="preload" as="image" href="./images/solnedgang.jpg">
     <link rel="preload" as="image" href="./images/1.jpg">
+    
+    <style>
+        html {
+            background-color: #464453;
+        }
+        body {
+            background-color: transparent;
+        }
+        @media screen and (max-width: 768px) {
+            html {
+                background: transparent;
+            }
+        }
+    </style>
 </head>
 <body>
+    <div id="preloader"></div>
     <header>
         <h1>The Quiet Hub</h1>
         <div class="header-line" aria-hidden="true"></div>
@@ -59,6 +74,37 @@
             </div>
             <h2 class="playlist-title">Peaceful Piano</h2>
         </a>
+        <a href="#" 
+           class="playlist-card coming-soon" 
+           aria-label="Gentle Jazz playlist - Coming Soon"
+           onclick="return false;">
+            <div class="playlist-image-container">
+                <div class="playlist-image">
+                    <img src="images/jazz.png" 
+                         alt="Gentle Jazz"
+                         width="250" 
+                         height="250">
+                    <div class="spotify-logo-overlay">
+                        <img src="./images/spotifylogo.png" 
+                             alt="Spotify" 
+                             loading="lazy">
+                    </div>
+                    <div class="coming-soon-overlay">
+                        <div class="coming-soon-text">Coming Soon</div>
+                    </div>
+                </div>
+            </div>
+            <h2 class="playlist-title">Gentle Jazz</h2>
+        </a>
     </main>
+
+    <script>
+        window.addEventListener('load', function() {
+            document.getElementById('preloader').style.opacity = '0';
+            setTimeout(function() {
+                document.getElementById('preloader').style.display = 'none';
+            }, 300);
+        });
+    </script>
 </body>
 </html>
