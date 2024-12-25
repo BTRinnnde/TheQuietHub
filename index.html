@@ -64,10 +64,17 @@
                          alt="Peaceful Piano"
                          width="250" 
                          height="250">
-                    <div class="spotify-logo-overlay">
-                        <img src="./images/spotifylogo.png" 
-                             alt="Spotify" 
-                             loading="lazy">
+                    <div class="service-logos-container">
+                        <div class="service-logo spotify">
+                            <img src="./images/spotify1.png" 
+                                 alt="Spotify" 
+                                 loading="lazy">
+                        </div>
+                        <div class="service-logo">
+                            <img src="./images/youtube1.png" 
+                                 alt="YouTube" 
+                                 loading="lazy">
+                        </div>
                     </div>
                     <div class="play-button" aria-hidden="true"></div>
                 </div>
@@ -84,10 +91,17 @@
                          alt="Gentle Jazz"
                          width="250" 
                          height="250">
-                    <div class="spotify-logo-overlay">
-                        <img src="./images/spotifylogo.png" 
-                             alt="Spotify" 
-                             loading="lazy">
+                    <div class="service-logos-container">
+                        <div class="service-logo spotify">
+                            <img src="./images/spotify1.png" 
+                                 alt="Spotify" 
+                                 loading="lazy">
+                        </div>
+                        <div class="service-logo">
+                            <img src="./images/youtube1.png" 
+                                 alt="YouTube" 
+                                 loading="lazy">
+                        </div>
                     </div>
                     <div class="coming-soon-overlay">
                         <div class="coming-soon-text">Coming Soon</div>
@@ -98,12 +112,58 @@
         </a>
     </main>
 
+    <div class="modal-overlay" id="serviceModal">
+        <div class="modal-content">
+            <h3 class="modal-title">Click Your Platform</h3>
+            <div class="service-choices">
+                <a href="https://open.spotify.com/playlist/51FY41cuYWtjoeuY90aTkw?si=5ba0775c8e0e4a31" 
+                   class="service-choice"
+                   target="_blank"
+                   rel="noopener">
+                    <img src="./images/spotify.png" alt="Listen on Spotify">
+                </a>
+                <a href="https://music.youtube.com/playlist?list=PLbeAGNc9R54fayVupFaxlfRU91v6xQw_a&feature=shared" 
+                   class="service-choice"
+                   target="_blank"
+                   rel="noopener">
+                    <img src="./images/youtube music.png" alt="Listen on YouTube">
+                </a>
+            </div>
+        </div>
+    </div>
+
     <script>
         window.addEventListener('load', function() {
             document.getElementById('preloader').style.opacity = '0';
             setTimeout(function() {
                 document.getElementById('preloader').style.display = 'none';
             }, 300);
+        });
+
+        const firstPlaylistCard = document.querySelector('.playlist-card:not(.coming-soon)');
+        const modal = document.getElementById('serviceModal');
+
+        firstPlaylistCard.addEventListener('click', function(e) {
+            e.preventDefault();
+            modal.classList.add('active');
+        });
+
+        modal.addEventListener('click', function(e) {
+            if (!e.target.closest('.service-choice')) {
+                this.classList.remove('active');
+            }
+        });
+
+        modal.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', e => {
+                e.stopPropagation();
+            });
+        });
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && modal.classList.contains('active')) {
+                modal.classList.remove('active');
+            }
         });
     </script>
 </body>

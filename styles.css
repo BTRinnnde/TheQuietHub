@@ -271,10 +271,10 @@ html::-webkit-scrollbar {
 
 .spotify-logo-overlay {
     position: absolute;
-    bottom: -16px;
+    bottom: -20px;
     left: 8px;
-    width: 65px;
-    height: 65px;
+    width: 80px;
+    height: 80px;
     z-index: 5;
 }
 
@@ -364,5 +364,179 @@ html::-webkit-scrollbar {
     .playlist-title {
         width: min(140px, 42vw);  /* Same size as above */
         font-size: clamp(1rem, 3.5vw, 1.4rem);
+    }
+}
+
+/* Mobile adjustments */
+@media screen and (max-width: 768px) {
+    .spotify-logo-overlay {
+        bottom: -15px;
+        left: 8px;
+        width: 60px;
+        height: 60px;
+    }
+}
+
+/* Small mobile adjustments */
+@media screen and (max-width: 480px) {
+    .spotify-logo-overlay {
+        bottom: -12px;
+        left: 8px;
+        width: 45px;
+        height: 45px;
+    }
+}
+
+.service-logos-container {
+    position: absolute;
+    bottom: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    z-index: 1;
+}
+
+.service-logo {
+    width: 70px;
+    height: 70px;
+}
+
+.service-logo.spotify {
+    width: 80px;  /* Spotify slightly larger */
+    height: 80px;
+}
+
+.service-logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    filter: brightness(1.2);
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 768px) {
+    .service-logos-container {
+        bottom: -15px;
+        gap: 12px;
+    }
+    .service-logo {
+        width: 52px;
+        height: 52px;
+    }
+    .service-logo.spotify {
+        width: 60px;
+        height: 60px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .service-logos-container {
+        bottom: -12px;
+        gap: 10px;
+    }
+    .service-logo {
+        width: 40px;
+        height: 40px;
+    }
+    .service-logo.spotify {
+        width: 45px;
+        height: 45px;
+    }
+}
+
+/* Add these new styles for the service choice modal */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(8px);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.modal-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    padding: 2rem;
+}
+
+.modal-title {
+    color: white;
+    font-size: 1.8rem;
+    letter-spacing: 0.1em;
+    text-align: center;
+    margin-bottom: 1rem;
+    font-weight: 300;
+    opacity: 0.95;
+}
+
+.service-choices {
+    display: flex;
+    gap: 3rem;
+}
+
+.service-choice {
+    cursor: pointer;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    opacity: 0.9;
+}
+
+.service-choice:hover {
+    transform: scale(1.1);
+    opacity: 1;
+}
+
+.service-choice img {
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+    filter: brightness(1.2);
+}
+
+.modal-overlay.active {
+    display: flex;
+    opacity: 1;
+}
+
+@media screen and (max-width: 768px) {
+    .service-choice img {
+        width: 80px;
+        height: 80px;
+    }
+    .modal-content {
+        gap: 2rem;
+    }
+    .modal-title {
+        font-size: 1.5rem;
+    }
+    .service-choices {
+        gap: 2rem;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .service-choice img {
+        width: 60px;
+        height: 60px;
+    }
+    .modal-content {
+        gap: 1.5rem;
+    }
+    .modal-title {
+        font-size: 1.3rem;
+    }
+    .service-choices {
+        gap: 1.5rem;
     }
 }
