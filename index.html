@@ -132,39 +132,6 @@
         </div>
     </div>
 
-    <script>
-        window.addEventListener('load', function() {
-            document.getElementById('preloader').style.opacity = '0';
-            setTimeout(function() {
-                document.getElementById('preloader').style.display = 'none';
-            }, 300);
-        });
-
-        const firstPlaylistCard = document.querySelector('.playlist-card:not(.coming-soon)');
-        const modal = document.getElementById('serviceModal');
-
-        firstPlaylistCard.addEventListener('click', function(e) {
-            e.preventDefault();
-            modal.classList.add('active');
-        });
-
-        modal.addEventListener('click', function(e) {
-            if (!e.target.closest('.service-choice')) {
-                this.classList.remove('active');
-            }
-        });
-
-        modal.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', e => {
-                e.stopPropagation();
-            });
-        });
-
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape' && modal.classList.contains('active')) {
-                modal.classList.remove('active');
-            }
-        });
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>

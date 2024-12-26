@@ -3,10 +3,11 @@ html, body {
     padding: 0;
     height: 100vh;
     overflow: hidden;
-}
-
-html {
-  /*  background-color: #464453; */
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    z-index: 0;
 }
 
 body {
@@ -248,7 +249,28 @@ html::-webkit-scrollbar {
     }
 } 
 
-@media (hover: hover) {
+/* Remove all hover effects by default */
+.playlist-card:hover .playlist-image-container {
+    transform: none;
+}
+
+.playlist-card:hover .playlist-title {
+    color: #fff;
+}
+
+.playlist-card:hover .play-button {
+    background: rgba(255, 255, 255, 0.08);
+    transform: translate(-50%, -50%);
+    box-shadow: none;
+}
+
+.playlist-card:hover .play-button::after {
+    border-color: transparent transparent transparent rgba(255, 255, 255, 0.95);
+    filter: none;
+}
+
+/* Enable all hover effects only for desktop */
+@media screen and (min-width: 769px) {
     .playlist-card:hover .playlist-image-container {
         transform: translateY(-5px) translateZ(0);
     }
@@ -267,7 +289,7 @@ html::-webkit-scrollbar {
         border-color: transparent transparent transparent rgba(255, 255, 255, 1);
         filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
     }
-} 
+}
 
 .spotify-logo-overlay {
     position: absolute;
@@ -453,7 +475,7 @@ html::-webkit-scrollbar {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.7);
+    background: rgba(0, 0, 0, 0.4);
     backdrop-filter: blur(8px);
     display: none;
     justify-content: center;
@@ -488,13 +510,18 @@ html::-webkit-scrollbar {
 
 .service-choice {
     cursor: pointer;
-    transition: transform 0.3s ease, opacity 0.3s ease;
     opacity: 0.9;
+    transform: translateZ(0);
+    transition: transform 0.6s cubic-bezier(0.33, 1, 0.68, 1),
+                opacity 0.4s cubic-bezier(0.33, 1, 0.68, 1);
+    will-change: transform;
+    backface-visibility: hidden;
+    -webkit-font-smoothing: antialiased;
 }
 
 .service-choice:hover {
-    transform: scale(1.1);
-    opacity: 1;
+    transform: none;
+    opacity: 0.9;
 }
 
 .service-choice img {
@@ -538,5 +565,75 @@ html::-webkit-scrollbar {
     }
     .service-choices {
         gap: 1.5rem;
+    }
+}
+
+/* Add these properties to prevent text selection and enable smooth transitions */
+body {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.draggable-content {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transform: translateY(0);
+    transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    will-change: transform;
+    z-index: 1;
+}
+
+.draggable-content.dragging {
+    transition: none;
+}
+
+/* Ensure background stays behind the draggable content */
+body {
+    z-index: 0;
+}
+
+/* Set default cursor for everything on desktop */
+@media screen and (min-width: 769px) {
+    /* Set default cursor for everything */
+    body, 
+    .playlist-card.coming-soon,
+    .modal-overlay {
+        cursor: default;
+    }
+    
+    /* Change cursor only for interactive elements */
+    .playlist-card:not(.coming-soon),
+    .service-choice {
+        cursor: pointer;
+    }
+}
+
+/* Option 2: Set cursor for specific elements on desktop */
+@media screen and (min-width: 769px) {
+    .playlist-card,
+    .service-choice,
+    .modal-overlay {
+        cursor: pointer; /* or any other cursor type */
+    }
+}
+
+/* Enable smooth hover animation only for desktop */
+@media screen and (min-width: 769px) {
+    .service-choice {
+        transform: scale(1) translateZ(0);
+    }
+    
+    .service-choice:hover {
+        transform: scale(1.08) translateZ(0);
+        opacity: 1;
     }
 }
