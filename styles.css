@@ -6,7 +6,6 @@ html, body {
     overflow: hidden;
     -webkit-user-select: none;
     user-select: none;
-    z-index: 0;
 }
 
 body {
@@ -261,6 +260,7 @@ html::-webkit-scrollbar {
 
 /* Enable hover effects only for desktop */
 @media screen and (min-width: 769px) {
+    /* Keep all existing hover effects */
     .playlist-card:hover .playlist-image-container {
         transform: translateY(-5px) translateZ(0);
     }
@@ -280,11 +280,6 @@ html::-webkit-scrollbar {
         filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
     }
 
-    .service-choice:hover {
-        transform: scale(1.08) translateZ(0);
-        opacity: 1;
-    }
-
     /* Desktop cursors */
     body, 
     .playlist-card.coming-soon,
@@ -295,6 +290,12 @@ html::-webkit-scrollbar {
     .playlist-card:not(.coming-soon),
     .service-choice {
         cursor: pointer;
+    }
+
+    /* Service choice hover */
+    .service-choice:hover {
+        transform: scale(1.08) translateZ(0);
+        opacity: 1;
     }
 }
 
@@ -599,14 +600,6 @@ html::-webkit-scrollbar {
     }
 }
 
-/* Add these properties to prevent text selection and enable smooth transitions */
-body {
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-}
-
 .draggable-content {
     position: fixed;
     top: 0;
@@ -625,46 +618,4 @@ body {
 
 .draggable-content.dragging {
     transition: none;
-}
-
-/* Ensure background stays behind the draggable content */
-body {
-    z-index: 0;
-}
-
-/* Set default cursor for everything on desktop */
-@media screen and (min-width: 769px) {
-    /* Set default cursor for everything */
-    body, 
-    .playlist-card.coming-soon,
-    .modal-overlay {
-        cursor: default;
-    }
-    
-    /* Change cursor only for interactive elements */
-    .playlist-card:not(.coming-soon),
-    .service-choice {
-        cursor: pointer;
-    }
-}
-
-/* Option 2: Set cursor for specific elements on desktop */
-@media screen and (min-width: 769px) {
-    .playlist-card,
-    .service-choice,
-    .modal-overlay {
-        cursor: pointer; /* or any other cursor type */
-    }
-}
-
-/* Enable smooth hover animation only for desktop */
-@media screen and (min-width: 769px) {
-    .service-choice {
-        transform: scale(1) translateZ(0);
-    }
-    
-    .service-choice:hover {
-        transform: scale(1.08) translateZ(0);
-        opacity: 1;
-    }
 }
