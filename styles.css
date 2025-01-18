@@ -1,0 +1,680 @@
+/* ==========================================================================
+   1. Core & Reset
+   ========================================================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    scroll-behavior: smooth;
+}
+
+html::-webkit-scrollbar {
+    display: none;
+}
+
+body {
+    font-family: 'SuperCaramel', Arial, sans-serif;
+    overflow-x: hidden;
+    background: #002B00;
+}
+
+@font-face {
+    font-family: 'SuperCaramel';
+    src: url('fonts/SuperCaramel.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.page-wrapper {
+    height: 200vh;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* ==========================================================================
+   2. Layout & Sections
+   ========================================================================== */
+.top-section {
+    height: 100vh;
+    background: linear-gradient(225deg,
+        #000000 0%,
+        #000000 35%,
+        #003300 70%,
+        #004000 100%
+    );
+    display: flex;
+    align-items: flex-end;
+    padding: 0 0 15vh 5%;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+.bottom-section {
+    height: 107.5vh;
+    background: linear-gradient(35deg,
+        #000000 0%,
+        #000000 35%,
+        #003300 70%,
+        #004000 100%
+    );
+    position: relative;
+    margin-top: 92.5vh;
+    border-radius: 60px 60px 0 0;
+    z-index: 2;
+    transition: transform 0.3s ease;
+}
+
+/* ==========================================================================
+   3. Typography & Text Effects
+   ========================================================================== */
+.main-title {
+    color: #FFFFFF;
+    font-size: 2.8rem;
+    font-weight: bold;
+    line-height: 1.2;
+    text-shadow: 
+        2px 2px 0 rgba(135, 206, 250, 0.8),
+        0 8px 16px rgba(0, 0, 0, 0.5);
+}
+
+.main-title span {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding-left: 6rem;
+}
+
+.hub-title {
+    color: #FFFFFF;
+    font-size: 6rem;
+    text-align: center;
+    margin-bottom: 8vh;
+    position: absolute;
+    top: 30vh;
+    width: 100%;
+    text-shadow: 
+        4px 2.5px 0 rgba(135, 206, 250, 0.8),
+        0 12px 24px rgba(0, 0, 0, 0.6);
+}
+
+.hub-title span {
+    display: inline-block;
+}
+
+/* Hub Title Letter Rotations */
+.hub-title span:nth-child(1) { transform: rotate(-15deg); }
+.hub-title span:nth-child(2) { transform: rotate(-12deg); }
+.hub-title span:nth-child(3) { transform: rotate(-9deg); }
+.hub-title span:nth-child(4) { transform: rotate(-6deg); }
+.hub-title span:nth-child(5) { transform: rotate(-3deg); }
+.hub-title span:nth-child(6) { transform: rotate(-1deg); }
+.hub-title span:nth-child(7) { transform: rotate(0deg); }
+.hub-title span:nth-child(8) { transform: rotate(1deg); }
+.hub-title span:nth-child(9) { transform: rotate(3deg); }
+.hub-title span:nth-child(10) { transform: rotate(6deg); }
+.hub-title span:nth-child(11) { transform: rotate(9deg); }
+.hub-title span:nth-child(12) { transform: rotate(12deg); }
+.hub-title span:nth-child(13) { transform: rotate(15deg); }
+
+/* ==========================================================================
+   4. Interactive Components
+   ========================================================================== */
+/* 4.1 Elements Grid */
+.elements-container {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    padding: 0 2rem;
+    position: absolute;
+    top: calc(107.5vh - 45vh);
+    left: 0;
+    right: 0;
+}
+
+.element, .modal-element {
+    width: 115px;
+    height: 115px;
+    border-radius: 15px;
+    background-color: rgb(50, 50, 50);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.element-wrapper, .modal-element-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.element-label, .modal-element-label {
+    color: #FFFFFF;
+    font-size: 0.9rem;
+    text-align: center;
+}
+
+/* 4.2 Folders */
+.folder {
+    position: relative;
+    background-color: rgb(50, 50, 50);
+    cursor: pointer;
+    opacity: 0.85;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.folder:hover, .modal-element.folder:hover {
+    transform: scale(1.05);
+    opacity: 1;
+}
+
+.folder-grid {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 6px;
+    padding: 12px;
+    border-radius: inherit;
+    background-color: inherit;
+}
+
+.folder-grid-item {
+    background-color: #FFFFFF;
+    border-radius: 12px;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    opacity: 0.85;
+}
+
+/* Folder Preview */
+.folder-grid-item.folder-preview {
+    background-color: rgb(60, 60, 60);
+    position: relative;
+    overflow: hidden;
+    opacity: 0.85;
+}
+
+.mini-folder-grid {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 2px;
+    padding: 3px;
+    background-color: inherit;
+}
+
+.mini-grid-item {
+    background-color: #FFFFFF;
+    border-radius: 4px;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+}
+
+/* Folder Preview Images */
+.folder-grid-item:nth-child(1) { background-image: url('https://picsum.photos/id/4/115/115'); }
+.folder-grid-item:nth-child(2) { background-image: url('https://picsum.photos/id/5/115/115'); }
+.folder-grid-item:nth-child(3) { background-image: url('https://picsum.photos/id/6/115/115'); }
+
+.folder-grid-item.folder-preview .mini-grid-item:nth-child(1) { background-image: url('https://picsum.photos/id/7/115/115'); }
+.folder-grid-item.folder-preview .mini-grid-item:nth-child(2) { background-image: url('https://picsum.photos/id/8/115/115'); }
+.folder-grid-item.folder-preview .mini-grid-item:nth-child(3) { background-image: url('https://picsum.photos/id/9/115/115'); }
+.folder-grid-item.folder-preview .mini-grid-item:nth-child(4) { background-image: url('https://picsum.photos/id/10/115/115'); }
+
+#innerFolder .folder-grid-item:nth-child(1) { background-image: url('https://picsum.photos/id/7/115/115'); }
+#innerFolder .folder-grid-item:nth-child(2) { background-image: url('https://picsum.photos/id/8/115/115'); }
+#innerFolder .folder-grid-item:nth-child(3) { background-image: url('https://picsum.photos/id/9/115/115'); }
+#innerFolder .folder-grid-item:nth-child(4) { background-image: url('https://picsum.photos/id/10/115/115'); }
+
+/* 4.3 Modals */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+    z-index: 1000;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    padding-top: 15vh;
+}
+
+.modal.show {
+    display: flex;
+    opacity: 1;
+}
+
+.modal-content {
+    background: rgb(40, 40, 40);
+    width: 302px;
+    height: 302px;
+    margin: auto;
+    border-radius: 39px;
+    transform: scale(1);
+    transition: transform 0.3s ease;
+    padding: 25px 20px 15px 20px;
+}
+
+.modal-grid {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, 115px);
+    grid-template-rows: repeat(2, auto);
+    gap: 0.6rem 1.8rem;
+    place-content: center;
+}
+
+/* Element Modal */
+.element-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.75);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    z-index: 1002;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    padding-top: 15vh;
+}
+
+.element-modal.show {
+    display: flex;
+    opacity: 1;
+}
+
+.element-modal-content {
+    width: 302px;
+    height: 302px;
+    margin: auto;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 0;
+}
+
+.scaled-element-label {
+    color: #FFFFFF;
+    font-size: 1.5rem;
+    text-align: center;
+    position: absolute;
+    top: -40px;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+
+/* Modal Backdrop Levels */
+#innerFolderModal.show {
+    background-color: rgba(0, 0, 0, 0.45);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    z-index: 1001;
+}
+
+#folderModal.show {
+    background-color: rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
+    z-index: 1000;
+}
+
+/* ==========================================================================
+   5. 3D Components
+   ========================================================================== */
+/* 5.1 Cube Animation */
+.cube-wrapper {
+    display: inline-block;
+    perspective: 1000px;
+    margin-left: 0.8rem;
+    position: relative;
+    top: 0.35rem;
+    transform-style: preserve-3d;
+    -webkit-transform-style: preserve-3d;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+}
+
+.cube {
+    display: inline-block;
+    position: relative;
+    width: 240px;
+    height: 2.8rem;
+    transform-style: preserve-3d;
+    transition: transform 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+    -webkit-transform-style: preserve-3d;
+}
+
+.cube-face {
+    position: absolute;
+    width: auto;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    color: #FFFFFF;
+    font-size: 2.8rem;
+    font-weight: bold;
+    white-space: nowrap;
+    text-rendering: optimizeLegibility;
+    transform-style: preserve-3d;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    will-change: transform;
+    text-shadow: 
+        2px 2px 0 rgba(135, 206, 250, 0.8),
+        0 8px 16px rgba(0, 0, 0, 0.5);
+}
+
+/* Cube Face Positions */
+.cube-face:nth-child(1) { transform: rotateX(0deg) translateZ(35px); opacity: 1; }
+.cube-face:nth-child(2) { transform: rotateX(-90deg) translateZ(35px); }
+.cube-face:nth-child(3) { transform: rotateX(-180deg) translateZ(35px); }
+.cube-face:nth-child(4) { transform: rotateX(-270deg) translateZ(35px); }
+.cube-face:nth-child(5) { transform: rotateX(-360deg) translateZ(35px); }
+.cube-face:nth-child(6) { transform: rotateX(-450deg) translateZ(35px); }
+.cube-face:nth-child(7) { transform: rotateX(-540deg) translateZ(35px); }
+.cube-face:nth-child(8) { transform: rotateX(-630deg) translateZ(35px); }
+
+/* 5.2 Globe */
+#globe-wrapper {
+    position: absolute;
+    top: 5%;
+    right: 5%;
+    width: 400px;
+    height: 400px;
+    z-index: 2;
+}
+
+#globe-wrapper canvas {
+    width: 100%;
+    height: 100%;
+}
+
+.globe-title-wrapper {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    perspective: 300px;
+    z-index: 3;
+    white-space: nowrap;
+}
+
+.globe-title {
+    color: white;
+    font-size: 32px;
+    font-weight: bold;
+    text-align: center;
+    transform-style: preserve-3d;
+    width: auto;
+    transform: translateZ(300px);
+}
+
+.globe-title span {
+    display: inline-block;
+    transform-origin: 50% 50% -90px;
+    letter-spacing: 4px;
+}
+
+/* Globe Title Letter Positions */
+.globe-title span:nth-child(1) { transform: rotateY(-25deg) translateZ(-210px); }
+.globe-title span:nth-child(2) { transform: rotateY(-20deg) translateZ(-210px); }
+.globe-title span:nth-child(3) { transform: rotateY(-15deg) translateZ(-210px) translateX(3px); }
+.globe-title span:nth-child(4) { transform: rotateY(-10deg) translateZ(-210px) translateX(4px); }
+.globe-title span:nth-child(5) { transform: rotateY(-5deg) translateZ(-210px) translateX(3px); }
+.globe-title span:nth-child(6) { transform: rotateY(-3deg) translateZ(-210px) translateX(3px); }
+.globe-title span:nth-child(7) { transform: rotateY(-1deg) translateZ(-210px) translateX(3px); }
+.globe-title span:nth-child(8) { transform: rotateY(1deg) translateZ(-210px) translateX(3px); }
+.globe-title span:nth-child(9) { transform: rotateY(3deg) translateZ(-210px) translateX(3px); }
+.globe-title span:nth-child(10) { transform: rotateY(5deg) translateZ(-210px) translateX(4px); }
+.globe-title span:nth-child(11) { transform: rotateY(10deg) translateZ(-210px) translateX(-3px); }
+.globe-title span:nth-child(12) { transform: rotateY(15deg) translateZ(-210px); }
+.globe-title span:nth-child(13) { transform: rotateY(20deg) translateZ(-210px); }
+
+/* ==========================================================================
+   6. Animations
+   ========================================================================== */
+@keyframes pulse {
+    0% {
+        transform: translateX(-50%) scale(1);
+        opacity: 0.7;
+    }
+    50% {
+        transform: translateX(-50%) scale(1.1);
+        opacity: 1;
+    }
+    100% {
+        transform: translateX(-50%) scale(1);
+        opacity: 0.7;
+    }
+}
+
+.arrow-container {
+    position: absolute;
+    top: 2vh;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 30px;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+/* ==========================================================================
+   7. Responsive Design
+   ========================================================================== */
+/* Medium screens (768px and below) */
+@media screen and (max-width: 768px) {
+    /* Globe Adjustments */
+    #globe-wrapper {
+        width: 70vw;
+        height: 70vw;
+        top: 5%;
+        right: 50%;
+        transform: translateX(50%);
+    }
+
+    .globe-title {
+        font-size: calc(4vw + 8px);
+    }
+
+    /* Typography Adjustments */
+    .main-title {
+        font-size: 1.8rem;
+        line-height: 1.4;
+        text-shadow: none;
+    }
+
+    .main-title span {
+        padding-left: 2rem;
+    }
+
+    /* Cube Adjustments */
+    .cube {
+        width: 180px;
+        height: 2rem;
+    }
+
+    .cube-face {
+        font-size: 2rem;
+        text-shadow: none;
+    }
+
+    /* Cube Face Positions */
+    .cube-face:nth-child(1) { transform: rotateX(0deg) translateZ(25px); }
+    .cube-face:nth-child(2) { transform: rotateX(-90deg) translateZ(25px); }
+    .cube-face:nth-child(3) { transform: rotateX(-180deg) translateZ(25px); }
+    .cube-face:nth-child(4) { transform: rotateX(-270deg) translateZ(25px); }
+    .cube-face:nth-child(5) { transform: rotateX(-360deg) translateZ(25px); }
+    .cube-face:nth-child(6) { transform: rotateX(-450deg) translateZ(25px); }
+    .cube-face:nth-child(7) { transform: rotateX(-540deg) translateZ(25px); }
+    .cube-face:nth-child(8) { transform: rotateX(-630deg) translateZ(25px); }
+
+    /* Background Adjustments */
+    .top-section {
+        background: linear-gradient(140deg, 
+            #000000 0%, 
+            #000000 40%, 
+            #002800 70%, 
+            #004000 100%
+        );
+    }
+
+    .bottom-section {
+        background: linear-gradient(320deg, 
+            #000000 0%, 
+            #000000 35%, 
+            #003300 65%, 
+            #005000 100%
+        );
+    }
+
+    /* Modal Adjustments */
+    .modal {
+        padding-top: 18.5vh;
+    }
+
+    .element-modal {
+        padding-top: 18.5vh;
+    }
+
+    .modal-content {
+        width: 311px;
+        height: 311px;
+        margin: auto;
+    }
+
+    /* Elements Grid Adjustments */
+    .elements-container {
+        display: grid;
+        grid-template-columns: repeat(2, 115px);
+        grid-template-rows: repeat(2, auto);
+        gap: 2rem;
+        justify-content: center;
+        padding: 0 1rem;
+        top: 45vh;
+    }
+
+    .element-wrapper {
+        margin: 0;
+    }
+
+    /* Hub Title Adjustments */
+    .hub-title {
+        font-size: min(12vw, 6rem);
+        width: 95%;
+        left: 50%;
+        transform: translateX(-50%);
+        top: 25vh;
+        white-space: nowrap;
+    }
+}
+
+/* Small screens (480px and below) */
+@media screen and (max-width: 480px) {
+    /* Typography Adjustments */
+    .main-title {
+        font-size: 1.4rem;
+        line-height: 1.5;
+        text-shadow: none;
+    }
+
+    .main-title span {
+        padding-left: 1rem;
+    }
+
+    .hub-title {
+        font-size: min(12vw, 3rem);
+        top: 20vh;
+    }
+
+    /* Cube Adjustments */
+    .cube {
+        width: 140px;
+        height: 1.6rem;
+    }
+
+    .cube-face {
+        font-size: 1.6rem;
+        text-shadow: none;
+    }
+
+    .cube-wrapper {
+        margin-left: 0.4rem;
+        top: 0.25rem;
+    }
+
+    /* Elements Grid Adjustments */
+    .elements-container {
+        grid-template-columns: repeat(2, 115px);
+        gap: 2rem;
+        top: 45vh;
+    }
+
+    .element, .modal-element {
+        width: 115px;
+        height: 115px;
+    }
+
+    /* Cube Face Positions */
+    .cube-face:nth-child(1) { transform: rotateX(0deg) translateZ(20px); }
+    .cube-face:nth-child(2) { transform: rotateX(-90deg) translateZ(20px); }
+    .cube-face:nth-child(3) { transform: rotateX(-180deg) translateZ(20px); }
+    .cube-face:nth-child(4) { transform: rotateX(-270deg) translateZ(20px); }
+    .cube-face:nth-child(5) { transform: rotateX(-360deg) translateZ(20px); }
+    .cube-face:nth-child(6) { transform: rotateX(-450deg) translateZ(20px); }
+    .cube-face:nth-child(7) { transform: rotateX(-540deg) translateZ(20px); }
+    .cube-face:nth-child(8) { transform: rotateX(-630deg) translateZ(20px); }
+
+    /* Globe Title Adjustments */
+    .globe-title {
+        transform: translateZ(300px) translateX(-10px);
+    }
+
+    /* Globe Title Letter Positions */
+    .globe-title span:nth-child(1) { transform: rotateY(-25deg) translateZ(-210px); }
+    .globe-title span:nth-child(2) { transform: rotateY(-20deg) translateZ(-210px) translateX(3px); }
+    .globe-title span:nth-child(3) { transform: rotateY(-15deg) translateZ(-210px) translateX(8px); }
+    .globe-title span:nth-child(4) { transform: rotateY(-10deg) translateZ(-210px); }
+    .globe-title span:nth-child(5) { transform: rotateY(-5deg) translateZ(-210px) translateX(12px); }
+    .globe-title span:nth-child(6) { transform: rotateY(-3deg) translateZ(-210px) translateX(11px); }
+    .globe-title span:nth-child(7) { transform: rotateY(-1deg) translateZ(-210px) translateX(10px); }
+    .globe-title span:nth-child(8) { transform: rotateY(1deg) translateZ(-210px) translateX(10px); }
+    .globe-title span:nth-child(9) { transform: rotateY(3deg) translateZ(-210px) translateX(10px); }
+    .globe-title span:nth-child(10) { transform: rotateY(5deg) translateZ(-210px); }
+    .globe-title span:nth-child(11) { transform: rotateY(10deg) translateZ(-210px) translateX(10px); }
+    .globe-title span:nth-child(12) { transform: rotateY(15deg) translateZ(-210px) translateX(15px); }
+    .globe-title span:nth-child(13) { transform: rotateY(20deg) translateZ(-210px) translateX(18px); }
+}

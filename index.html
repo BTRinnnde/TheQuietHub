@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiet Space</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="page-wrapper">
+        <section class="top-section">
+            <div id="globe-wrapper">
+                <canvas id="c"></canvas>
+                <div class="globe-title-wrapper">
+                    <div class="globe-title">
+                        <span>T</span><span>h</span><span>e</span>
+                        <span> </span>
+                        <span>Q</span><span>u</span><span>i</span><span>e</span><span>t</span>
+                        <span> </span>
+                        <span>H</span><span>u</span><span>b</span>
+                    </div>
+                </div>
+            </div>
+            
+            <h1 class="main-title">
+                This is your
+                <span>space for 
+                    <div class="cube-wrapper">
+                        <div class="cube">
+                            <div class="cube-face">Quiet.</div>
+                            <div class="cube-face">study.</div>
+                            <div class="cube-face">focus.</div>
+                            <div class="cube-face">creativity.</div>
+                            <div class="cube-face">reflection.</div>
+                            <div class="cube-face">peace.</div>
+                            <div class="cube-face">productivity.</div>
+                            <div class="cube-face">meditation.</div>
+                        </div>
+                    </div>
+                </span>
+            </h1>
+        </section>
+
+        <section class="bottom-section">
+            <div class="arrow-container">
+                <svg class="arrow-icon" width="30" height="30" viewBox="0 0 30 30">
+                    <path d="M3 22 L15 10 L27 22" stroke="#FFFFFF" fill="none" stroke-width="2.5" stroke-linecap="round"/>
+                </svg>
+            </div>
+            
+            <h2 class="hub-title">
+                <span>T</span><span>h</span><span>e</span>
+                <span> </span>
+                <span>Q</span><span>u</span><span>i</span><span>e</span><span>t</span>
+                <span> </span>
+                <span>H</span><span>u</span><span>b</span>
+            </h2>
+            <div class="elements-container">
+                <div class="element-wrapper">
+                    <div class="element clickable" data-element="1" 
+                         style="background-image: url('https://picsum.photos/id/1/115/115');"></div>
+                    <span class="element-label">Element 1</span>
+                </div>
+                <div class="element-wrapper">
+                    <div class="element clickable" data-element="2" 
+                         style="background-image: url('https://picsum.photos/id/2/115/115');"></div>
+                    <span class="element-label">Element 2</span>
+                </div>
+                <div class="element-wrapper">
+                    <div class="element clickable" data-element="3" 
+                         style="background-image: url('https://picsum.photos/id/3/115/115');"></div>
+                    <span class="element-label">Element 3</span>
+                </div>
+                <div class="element-wrapper">
+                    <div class="element folder">
+                        <div class="folder-grid">
+                            <div class="folder-grid-item"></div>
+                            <div class="folder-grid-item"></div>
+                            <div class="folder-grid-item"></div>
+                            <div class="folder-grid-item folder-preview">
+                                <div class="mini-folder-grid">
+                                    <div class="mini-grid-item"></div>
+                                    <div class="mini-grid-item"></div>
+                                    <div class="mini-grid-item"></div>
+                                    <div class="mini-grid-item"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <div class="modal" id="folderModal">
+        <div class="modal-content">
+            <div class="modal-grid">
+                <div class="modal-element-wrapper">
+                    <div class="modal-element clickable" data-element="modal1" 
+                         style="background-image: url('https://picsum.photos/id/4/115/115');"></div>
+                    <span class="modal-element-label">Element 4</span>
+                </div>
+                <div class="modal-element-wrapper">
+                    <div class="modal-element clickable" data-element="modal2" 
+                         style="background-image: url('https://picsum.photos/id/5/115/115');"></div>
+                    <span class="modal-element-label">Element 5</span>
+                </div>
+                <div class="modal-element-wrapper">
+                    <div class="modal-element clickable" data-element="modal3" 
+                         style="background-image: url('https://picsum.photos/id/6/115/115');"></div>
+                    <span class="modal-element-label">Element 6</span>
+                </div>
+                <div class="modal-element-wrapper">
+                    <div class="modal-element folder" id="innerFolder">
+                        <div class="folder-grid">
+                            <div class="folder-grid-item"></div>
+                            <div class="folder-grid-item"></div>
+                            <div class="folder-grid-item"></div>
+                            <div class="folder-grid-item"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="innerFolderModal">
+        <div class="modal-content">
+            <div class="modal-grid">
+                <div class="modal-element-wrapper">
+                    <div class="modal-element clickable" data-element="modal4" 
+                         style="background-image: url('https://picsum.photos/id/7/115/115');"></div>
+                    <span class="modal-element-label">Element 7</span>
+                </div>
+                <div class="modal-element-wrapper">
+                    <div class="modal-element clickable" data-element="modal5" 
+                         style="background-image: url('https://picsum.photos/id/8/115/115');"></div>
+                    <span class="modal-element-label">Element 8</span>
+                </div>
+                <div class="modal-element-wrapper">
+                    <div class="modal-element clickable" data-element="modal6" 
+                         style="background-image: url('https://picsum.photos/id/9/115/115');"></div>
+                    <span class="modal-element-label">Element 9</span>
+                </div>
+                <div class="modal-element-wrapper">
+                    <div class="modal-element clickable" data-element="modal7" 
+                         style="background-image: url('https://picsum.photos/id/10/115/115');"></div>
+                    <span class="modal-element-label">Element 10</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="globe-animation/globe.js"></script>
+</body>
+</html> 
