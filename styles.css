@@ -439,6 +439,9 @@ body {
     transform-style: preserve-3d;
     width: auto;
     transform: translateZ(300px);
+    text-rendering: geometricPrecision;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 .globe-title span {
@@ -600,6 +603,31 @@ body {
         top: 25vh;
         white-space: nowrap;
     }
+
+    /* Globe Title Adjustments */
+    .globe-title {
+        transform: translateZ(300px) translateX(-13px);
+    }
+
+    /* Globe Title Letter Positions */
+    .globe-title span:nth-child(1) { transform: rotateY(-25deg) translateZ(-210px); }
+    .globe-title span:nth-child(2) { transform: rotateY(-20deg) translateZ(-210px) translateX(2px); }
+    .globe-title span:nth-child(3) { transform: rotateY(-15deg) translateZ(-210px) translateX(7px); }
+    .globe-title span:nth-child(4) { transform: rotateY(-10deg) translateZ(-210px); }
+    .globe-title span:nth-child(5) { transform: rotateY(-5deg) translateZ(-210px) translateX(14px); }
+    .globe-title span:nth-child(6) { transform: rotateY(-3deg) translateZ(-210px) translateX(14px); }
+    .globe-title span:nth-child(7) { transform: rotateY(-1deg) translateZ(-210px) translateX(14px); }
+    .globe-title span:nth-child(8) { transform: rotateY(1deg) translateZ(-210px) translateX(15px); }
+    .globe-title span:nth-child(9) { transform: rotateY(3deg) translateZ(-210px) translateX(15px); }
+    .globe-title span:nth-child(10) { transform: rotateY(5deg) translateZ(-210px); }
+    .globe-title span:nth-child(11) { transform: rotateY(10deg) translateZ(-210px) translateX(14px); }
+    .globe-title span:nth-child(12) { transform: rotateY(15deg) translateZ(-210px) translateX(19px); }
+    .globe-title span:nth-child(13) { transform: rotateY(20deg) translateZ(-210px) translateX(22px); }
+
+    /* Layout Adjustments top section title */
+    .top-section {
+        padding: 0 0 20vh 5%;
+    }
 }
 
 /* Small screens (480px and below) */
@@ -660,21 +688,26 @@ body {
 
     /* Globe Title Adjustments */
     .globe-title {
-        transform: translateZ(300px) translateX(-10px);
+        transform: translateZ(300px) translateX(-14px);
     }
 
     /* Globe Title Letter Positions */
     .globe-title span:nth-child(1) { transform: rotateY(-25deg) translateZ(-210px); }
     .globe-title span:nth-child(2) { transform: rotateY(-20deg) translateZ(-210px) translateX(3px); }
-    .globe-title span:nth-child(3) { transform: rotateY(-15deg) translateZ(-210px) translateX(8px); }
+    .globe-title span:nth-child(3) { transform: rotateY(-15deg) translateZ(-210px) translateX(7px); }
     .globe-title span:nth-child(4) { transform: rotateY(-10deg) translateZ(-210px); }
-    .globe-title span:nth-child(5) { transform: rotateY(-5deg) translateZ(-210px) translateX(12px); }
-    .globe-title span:nth-child(6) { transform: rotateY(-3deg) translateZ(-210px) translateX(11px); }
-    .globe-title span:nth-child(7) { transform: rotateY(-1deg) translateZ(-210px) translateX(10px); }
-    .globe-title span:nth-child(8) { transform: rotateY(1deg) translateZ(-210px) translateX(10px); }
-    .globe-title span:nth-child(9) { transform: rotateY(3deg) translateZ(-210px) translateX(10px); }
+    .globe-title span:nth-child(5) { transform: rotateY(-5deg) translateZ(-210px) translateX(13px); }
+    .globe-title span:nth-child(6) { transform: rotateY(-3deg) translateZ(-210px) translateX(14px); }
+    .globe-title span:nth-child(7) { transform: rotateY(-1deg) translateZ(-210px) translateX(14px); }
+    .globe-title span:nth-child(8) { transform: rotateY(1deg) translateZ(-210px) translateX(14px); }
+    .globe-title span:nth-child(9) { transform: rotateY(3deg) translateZ(-210px) translateX(15px); }
     .globe-title span:nth-child(10) { transform: rotateY(5deg) translateZ(-210px); }
-    .globe-title span:nth-child(11) { transform: rotateY(10deg) translateZ(-210px) translateX(10px); }
-    .globe-title span:nth-child(12) { transform: rotateY(15deg) translateZ(-210px) translateX(15px); }
-    .globe-title span:nth-child(13) { transform: rotateY(20deg) translateZ(-210px) translateX(18px); }
+    .globe-title span:nth-child(11) { transform: rotateY(10deg) translateZ(-210px) translateX(15px); }
+    .globe-title span:nth-child(12) { transform: rotateY(15deg) translateZ(-210px) translateX(20px); }
+    .globe-title span:nth-child(13) { transform: rotateY(20deg) translateZ(-210px) translateX(24px); }
+
+    /* Layout Adjustments top section title */
+    .top-section {
+        padding: 0 0 25vh 5%;
+    }
 }

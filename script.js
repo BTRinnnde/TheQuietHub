@@ -8,6 +8,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const cube = document.querySelector('.cube');
     const faces = Array.from(cube.children);
 
+    // Remove blue highlight on touch devices
+    folder.style.webkitTapHighlightColor = 'transparent';
+    innerFolder.style.webkitTapHighlightColor = 'transparent';
+
     // ========== Animation State ==========
     let rotation = 0;
     let rotationInterval;
