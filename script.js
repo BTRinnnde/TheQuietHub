@@ -139,7 +139,12 @@ document.addEventListener('DOMContentLoaded', () => {
         elementModal.addEventListener('click', (e) => {
             if (e.target === elementModal) {
                 elementModal.remove();
-                toggleScroll(false);
+                
+                // Check if any folder modal is still open before enabling scroll
+                const folderStillOpen = document.querySelector('.modal.show');
+                if (!folderStillOpen) {
+                    toggleScroll(false);
+                }
                 
                 // Restore level 2 effects if we were in the second folder
                 if (wasInnerFolderOpen) {
