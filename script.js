@@ -34,12 +34,17 @@ document.addEventListener('DOMContentLoaded', () => {
         targetModal.style.webkitBackdropFilter = '';
         
         targetModal.classList.add('show');
-        toggleScroll(true);
+        toggleScroll(true);  // Disable scrolling
     };
 
     const handleModalClose = (targetModal) => {
         targetModal.classList.remove('show');
-        if (targetModal === modal) toggleScroll(false);
+        
+        // Only enable scrolling if no other modals are open
+        const anyModalOpen = document.querySelector('.modal.show, .element-modal.show');
+        if (!anyModalOpen) {
+            toggleScroll(false);
+        }
     };
 
     const createElementModal = (element) => {
@@ -53,11 +58,57 @@ document.addEventListener('DOMContentLoaded', () => {
         clone.style.transform = `scale(${getScaleFactor(element)})`;
         
         const wrapper = element.closest('.element-wrapper, .modal-element-wrapper');
-        const label = wrapper.querySelector('.element-label, .modal-element-label').textContent;
+        const fullName = element.getAttribute('data-full-name');
+        const label = fullName || wrapper.querySelector('.element-label, .modal-element-label').textContent;
         
         const labelElement = document.createElement('div');
         labelElement.className = 'scaled-element-label';
-        labelElement.textContent = label;
+
+        // If it's a full name (nature sounds), check if it needs splitting
+        if (fullName) {
+            // Create temporary span to measure text width
+            const tempSpan = document.createElement('span');
+            tempSpan.style.visibility = 'hidden';
+            tempSpan.style.fontSize = '1.8rem';  // Smaller font size for nature sounds
+            tempSpan.style.whiteSpace = 'nowrap';
+            tempSpan.textContent = label;
+            document.body.appendChild(tempSpan);
+
+            const textWidth = tempSpan.offsetWidth;
+            document.body.removeChild(tempSpan);
+
+            labelElement.style.fontSize = '1.8rem';  // Set smaller font size
+            
+            // If text is wider than 95% viewport
+            if (textWidth > window.innerWidth * 0.95) {
+                const words = label.split(' ');
+                
+                // For very small screens, split into three lines
+                if (textWidth > window.innerWidth * 1.4) {
+                    const third = Math.floor(words.length / 3);
+                    const firstLine = words.slice(0, third).join(' ');
+                    const secondLine = words.slice(third, third * 2).join(' ');
+                    const thirdLine = words.slice(third * 2).join(' ');
+                    
+                    labelElement.style.top = '-120px';  // More space for three lines
+                    labelElement.style.lineHeight = '1.2';
+                    labelElement.innerHTML = `${firstLine}<br>${secondLine}<br>${thirdLine}`;
+                } else {
+                    // Split into two lines
+                    const middle = Math.floor(words.length / 2);
+                    const firstLine = words.slice(0, middle).join(' ');
+                    const secondLine = words.slice(middle).join(' ');
+                    
+                    labelElement.style.top = '-85px';  // Space for two lines
+                    labelElement.style.lineHeight = '1.2';
+                    labelElement.innerHTML = `${firstLine}<br>${secondLine}`;
+                }
+            } else {
+                labelElement.textContent = label;
+            }
+        } else {
+            labelElement.textContent = label;
+        }
         
         content.appendChild(labelElement);
         content.appendChild(clone);
@@ -161,7 +212,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // Escape key handler
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') {
-            // Get all visible modals
             const elementModal = document.querySelector('.element-modal.show');
             const innerFolderModal = document.querySelector('#innerFolderModal.show');
             const folderModal = document.querySelector('#folderModal.show');
@@ -169,12 +219,15 @@ document.addEventListener('DOMContentLoaded', () => {
             // Close only the topmost modal
             if (elementModal) {
                 elementModal.remove();
-                toggleScroll(false);
+                // Check if any folder modal is still open
+                const folderStillOpen = document.querySelector('.modal.show');
+                if (!folderStillOpen) {
+                    toggleScroll(false);
+                }
             } else if (innerFolderModal) {
                 handleModalClose(innerFolderModal);
             } else if (folderModal) {
                 handleModalClose(folderModal);
-                toggleScroll(false);
             }
         }
     });

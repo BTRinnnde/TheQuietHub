@@ -233,19 +233,19 @@ body {
 }
 
 /* Folder Preview Images */
-.folder-grid-item:nth-child(1) { background-image: url('https://picsum.photos/id/4/115/115'); }
-.folder-grid-item:nth-child(2) { background-image: url('https://picsum.photos/id/5/115/115'); }
-.folder-grid-item:nth-child(3) { background-image: url('https://picsum.photos/id/6/115/115'); }
+.folder-grid-item:nth-child(1) { background-image: url('images/whitenoise.png'); }
+.folder-grid-item:nth-child(2) { background-image: url('images/brownnoise.png'); }
+.folder-grid-item:nth-child(3) { background-image: url('images/pinknoise.png'); }
 
-.folder-grid-item.folder-preview .mini-grid-item:nth-child(1) { background-image: url('https://picsum.photos/id/7/115/115'); }
-.folder-grid-item.folder-preview .mini-grid-item:nth-child(2) { background-image: url('https://picsum.photos/id/8/115/115'); }
-.folder-grid-item.folder-preview .mini-grid-item:nth-child(3) { background-image: url('https://picsum.photos/id/9/115/115'); }
-.folder-grid-item.folder-preview .mini-grid-item:nth-child(4) { background-image: url('https://picsum.photos/id/10/115/115'); }
+.folder-grid-item.folder-preview .mini-grid-item:nth-child(1) { background-image: url('images/nature.png'); }
+.folder-grid-item.folder-preview .mini-grid-item:nth-child(2) { background-image: url('images/creek.png'); }
+.folder-grid-item.folder-preview .mini-grid-item:nth-child(3) { background-image: url('images/rain.png'); }
+.folder-grid-item.folder-preview .mini-grid-item:nth-child(4) { background-image: url('images/thunder.png'); }
 
-#innerFolder .folder-grid-item:nth-child(1) { background-image: url('https://picsum.photos/id/7/115/115'); }
-#innerFolder .folder-grid-item:nth-child(2) { background-image: url('https://picsum.photos/id/8/115/115'); }
-#innerFolder .folder-grid-item:nth-child(3) { background-image: url('https://picsum.photos/id/9/115/115'); }
-#innerFolder .folder-grid-item:nth-child(4) { background-image: url('https://picsum.photos/id/10/115/115'); }
+#innerFolder .folder-grid-item:nth-child(1) { background-image: url('images/nature.png'); }
+#innerFolder .folder-grid-item:nth-child(2) { background-image: url('images/creek.png'); }
+#innerFolder .folder-grid-item:nth-child(3) { background-image: url('images/rain.png'); }
+#innerFolder .folder-grid-item:nth-child(4) { background-image: url('images/thunder.png'); }
 
 /* 4.3 Modals */
 .modal {
@@ -323,13 +323,13 @@ body {
 
 .scaled-element-label {
     color: #FFFFFF;
-    font-size: 1.5rem;
+    font-size: 2.2rem;
     text-align: center;
     position: absolute;
-    top: -40px;
-    left: 0;
-    right: 0;
-    margin: auto;
+    top: -50px;
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap;
 }
 
 /* Modal Backdrop Levels */
