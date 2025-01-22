@@ -1,26 +1,7 @@
-body {
-	background-color: #111;
-	overflow: hidden;
-}
 canvas {
 	position: absolute;
-	top: calc( 50% - 200px );
-	left: calc( 50% - 200px );
+	top: calc(50% - 200px);
+	left: calc(50% - 200px);
 }
-/* temporary */
-/*
-img {
-	position: absolute;
-	bottom: -6px;
-	right: -12px;
-}
-body {
-	color: #eee;
-}
-.debug-canvas {
-	position: absolute;
-	top: auto;
-	left: auto;
-	bottom: 0;
-	right: 0;
-}*/
+
+/* Remove all other styles including body background */

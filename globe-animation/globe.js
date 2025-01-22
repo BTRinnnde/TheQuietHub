@@ -34,20 +34,8 @@ function anim(){
 	// Clear the canvas
 	ctx.clearRect( 0, 0, s, s );
 	
-	// Create radial gradient
-	let gradient = ctx.createRadialGradient(s/2, s/2, 0, s/2, s/2, opts.globeRadius * 2);
-	gradient.addColorStop(0, '#000000');          // Black at center
-	gradient.addColorStop(0.5, '#000000');        // Stay black until halfway
-	gradient.addColorStop(0.6, 'transparent');      // Fade to transparent at the edge
-	
-	// Draw background circle with gradient
-	ctx.beginPath();
-	ctx.arc(s/2, s/2, opts.globeRadius * 2, 0, Math.PI * 2);
-	ctx.fillStyle = gradient;
-	ctx.fill();
-	
 	// Draw the wireframe
-	ctx.strokeStyle = 'rgba(135, 206, 250, 0.8)';
+	ctx.strokeStyle = 'rgba(69, 182, 254, 0.95)';
 	ctx.beginPath();
 	
 	for( var i = 0; i < lines.length; ++i ){
