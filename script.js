@@ -57,6 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const clone = element.cloneNode(true);
         clone.style.transform = `scale(${getScaleFactor(element)})`;
         
+        // Handle labels (keep existing label logic)
         const wrapper = element.closest('.element-wrapper, .modal-element-wrapper');
         const fullName = element.getAttribute('data-full-name');
         const label = fullName || wrapper.querySelector('.element-label, .modal-element-label').textContent;
@@ -110,8 +111,97 @@ document.addEventListener('DOMContentLoaded', () => {
             labelElement.textContent = label;
         }
         
+        // Add platform icons with URLs based on element
+        const iconsContainer = document.createElement('div');
+        iconsContainer.className = 'platform-icons';
+        
+        const spotifyIcon = document.createElement('img');
+        spotifyIcon.src = 'images/spotify.png';
+        spotifyIcon.className = 'platform-icon';
+        spotifyIcon.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const elementId = element.getAttribute('data-element');
+            switch(elementId) {
+                case '1':  // Peaceful Piano
+                    window.open('https://open.spotify.com/playlist/51FY41cuYWtjoeuY90aTkw?si=1101d1a908434425', '_blank');
+                    break;
+                case '2':  // Elegant Jazz
+                    window.open('https://open.spotify.com/playlist/3OHE3VO1SApjBBqBc5ns8v?si=4445c994fce241d3', '_blank');
+                    break;
+                case '3':  // Lofi Dreams
+                    window.open('https://open.spotify.com/playlist/5FmNVvu1pSFCXSVSzQH9pr?si=7e7be45d6b404642', '_blank');
+                    break;
+                case 'modal1':  // White Noise
+                    window.open('https://open.spotify.com/playlist/0ki4X4mN7ggUrYcvvv6pq1?si=df0f61d8d91741c6', '_blank');
+                    break;
+                case 'modal2':  // Brown Noise
+                    window.open('https://open.spotify.com/playlist/3TPmuEYCxb84sRYH4KXPiF?si=b0fc2132a1cd4e26', '_blank');
+                    break;
+                case 'modal3':  // Pink Noise
+                    window.open('https://open.spotify.com/playlist/606f0E4BDtBtWAO9SjO7BM?si=00a8c1e6235d4d17', '_blank');
+                    break;
+                case 'modal4':  // Forest
+                    window.open('https://open.spotify.com/playlist/4J9hDxbs08490A7BDS52lw?si=9fe35ff1a6f54781', '_blank');
+                    break;
+                case 'modal5':  // Creek
+                    window.open('https://open.spotify.com/playlist/4W7cNRDkx2I3Swy6zQtnMl?si=d335ca40e2614d8a', '_blank');
+                    break;
+                case 'modal6':  // Rain
+                    window.open('https://open.spotify.com/playlist/6eAkOpgDdauoC53IBkMKkD?si=613c0cdb4d5842e9', '_blank');
+                    break;
+                case 'modal7':  // Thunder
+                    window.open('https://open.spotify.com/playlist/2ivC5Xlo0rXsUM8j38vufy?si=4be0794be7ee4479', '_blank');
+                    break;
+            }
+        });
+        
+        const youtubeIcon = document.createElement('img');
+        youtubeIcon.src = 'images/youtube.png';
+        youtubeIcon.className = 'platform-icon';
+        youtubeIcon.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const elementId = element.getAttribute('data-element');
+            switch(elementId) {
+                case '1':  // Peaceful Piano
+                    window.open('https://music.youtube.com/playlist?list=PLbeAGNc9R54fayVupFaxlfRU91v6xQw_a', '_blank');
+                    break;
+                case '2':  // Elegant Jazz
+                    window.open('https://music.youtube.com/playlist?list=PLbeAGNc9R54dENbyCekPMHI9Ptt95zHFD&feature=shared', '_blank');
+                    break;
+                case '3':  // Lofi Dreams
+                    window.open('https://music.youtube.com/playlist?list=PLbeAGNc9R54f524vMstaf4GTPpoTQF1SP&feature=shared', '_blank');
+                    break;
+                case 'modal1':  // White Noise
+                    window.open('https://music.youtube.com/playlist?list=PLbeAGNc9R54fYV6kSiwRr74EvtwlBSA5c&feature=shared', '_blank');
+                    break;
+                case 'modal2':  // Brown Noise
+                    window.open('https://music.youtube.com/playlist?list=PLbeAGNc9R54d82SmgIUMQcVj6-2TtSaQS&feature=shared', '_blank');
+                    break;
+                case 'modal3':  // Pink Noise
+                    window.open('https://music.youtube.com/playlist?list=PLbeAGNc9R54fIynp_4WdkFwE1fcFXszTb&feature=shared', '_blank');
+                    break;
+                case 'modal4':  // Forest
+                    window.open('https://music.youtube.com/playlist?list=PLbeAGNc9R54fhassniXp2M_P_KxerUBqw&feature=shared', '_blank');
+                    break;
+                case 'modal5':  // Creek
+                    window.open('https://music.youtube.com/playlist?list=PLbeAGNc9R54cwstgvj1FQAwZWzo9uKeAr&feature=shared', '_blank');
+                    break;
+                case 'modal6':  // Rain
+                    window.open('https://music.youtube.com/playlist?list=PLbeAGNc9R54cLk4ygJ5ES4VH-_RV7Q-Ys&feature=shared', '_blank');
+                    break;
+                case 'modal7':  // Thunder
+                    window.open('https://music.youtube.com/playlist?list=PLbeAGNc9R54cZqRKtnHLfkq92h-2TSBYG&feature=shared', '_blank');
+                    break;
+            }
+        });
+        
+        iconsContainer.appendChild(spotifyIcon);
+        iconsContainer.appendChild(youtubeIcon);
+        
+        // Append in correct order
         content.appendChild(labelElement);
         content.appendChild(clone);
+        content.appendChild(iconsContainer);
         elementModal.appendChild(content);
         
         return elementModal;
@@ -219,19 +309,29 @@ document.addEventListener('DOMContentLoaded', () => {
         if (e.key === 'Escape') {
             const elementModal = document.querySelector('.element-modal.show');
             const innerFolderModal = document.querySelector('#innerFolderModal.show');
-            const folderModal = document.querySelector('#folderModal.show');
-
-            // Close only the topmost modal
+            
+            // Handle element modal escape
             if (elementModal) {
                 elementModal.remove();
-                // Check if any folder modal is still open
-                const folderStillOpen = document.querySelector('.modal.show');
-                if (!folderStillOpen) {
-                    toggleScroll(false);
+                
+                // If inner folder is open, restore its styles
+                if (innerFolderModal) {
+                    innerFolderModal.style.backgroundColor = 'rgba(0, 0, 0, 0.45)';
+                    innerFolderModal.style.backdropFilter = 'blur(5px)';
+                    innerFolderModal.style.webkitBackdropFilter = 'blur(5px)';
                 }
-            } else if (innerFolderModal) {
+                return;
+            }
+            
+            // Handle folder modal escape
+            if (innerFolderModal) {
                 handleModalClose(innerFolderModal);
-            } else if (folderModal) {
+                return;
+            }
+            
+            // Handle main folder escape
+            const folderModal = document.querySelector('#folderModal.show');
+            if (folderModal) {
                 handleModalClose(folderModal);
             }
         }
