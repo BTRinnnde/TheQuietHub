@@ -314,6 +314,12 @@ document.addEventListener('DOMContentLoaded', () => {
             if (elementModal) {
                 elementModal.remove();
                 
+                // Check if any modal is still open before enabling scroll
+                const anyModalOpen = document.querySelector('.modal.show');
+                if (!anyModalOpen) {
+                    toggleScroll(false);  // Re-enable scrolling only if no modals are open
+                }
+                
                 // If inner folder is open, restore its styles
                 if (innerFolderModal) {
                     innerFolderModal.style.backgroundColor = 'rgba(0, 0, 0, 0.45)';
@@ -326,6 +332,12 @@ document.addEventListener('DOMContentLoaded', () => {
             // Handle folder modal escape
             if (innerFolderModal) {
                 handleModalClose(innerFolderModal);
+                
+                // Check if any modal is still open before enabling scroll
+                const anyModalOpen = document.querySelector('.modal.show, .element-modal.show');
+                if (!anyModalOpen) {
+                    toggleScroll(false);
+                }
                 return;
             }
             
@@ -333,6 +345,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const folderModal = document.querySelector('#folderModal.show');
             if (folderModal) {
                 handleModalClose(folderModal);
+                toggleScroll(false);  // Re-enable scrolling
             }
         }
     });

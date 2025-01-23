@@ -44,8 +44,8 @@ body {
     background: linear-gradient(225deg,
         #000000 0%,
         #000000 35%,
-        #003300 70%,
-        #004000 100%
+        #004080 70%,
+        #0066cc 100%
     );
     display: flex;
     align-items: flex-end;
@@ -59,11 +59,12 @@ body {
 
 .bottom-section {
     height: 107.5vh;
-    background: linear-gradient(35deg,
+    background: radial-gradient(
+        ellipse 135% 135% at 20% 40%,
         #000000 0%,
-        #000000 35%,
-        #003300 70%,
-        #004000 100%
+        #000000 25%,
+        #004080 55%,
+        #0066cc 100%
     );
     position: relative;
     margin-top: 92.5vh;
@@ -567,19 +568,11 @@ body {
         background: linear-gradient(140deg, 
             #000000 0%, 
             #000000 40%, 
-            #002800 70%, 
-            #004000 100%
+            #004080 70%,
+            #0066cc 100%
         );
     }
-
-    .bottom-section {
-        background: linear-gradient(320deg, 
-            #000000 0%, 
-            #000000 35%, 
-            #003300 65%, 
-            #005000 100%
-        );
-    }
+    
 
     /* Modal Adjustments */
     .modal {
@@ -693,4 +686,44 @@ body {
     .globe-title {
         font-size: 2rem;
     }
+
+
+}
+
+/* Add to the end of your styles.css */
+.error-page {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: linear-gradient(225deg,
+        #000000 0%,
+        #000000 35%,
+        #003300 70%,
+        #004000 100%
+    );
+    color: white;
+}
+
+.error-page h1 {
+    font-size: 6rem;
+    margin: 0;
+}
+
+.error-page h2 {
+    font-size: 2rem;
+    margin: 1rem 0;
+}
+
+.error-page a {
+    color: #45b6fe;
+    text-decoration: none;
+    margin-top: 2rem;
+    font-size: 1.2rem;
+}
+
+.error-page a:hover {
+    text-decoration: underline;
 }
