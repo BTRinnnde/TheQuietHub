@@ -11,6 +11,12 @@ document.addEventListener('DOMContentLoaded', () => {
     // Remove blue highlight on touch devices
     folder.style.webkitTapHighlightColor = 'transparent';
     innerFolder.style.webkitTapHighlightColor = 'transparent';
+    // Remove blue highlight from platform icons
+    document.addEventListener('click', (e) => {
+        if (e.target.classList.contains('platform-icon')) {
+            e.target.style.webkitTapHighlightColor = 'transparent';
+        }
+    }, { capture: true });
 
     // ========== Animation State ==========
     let rotation = 0;

@@ -698,11 +698,12 @@ body {
     justify-content: center;
     align-items: center;
     text-align: center;
-    background: linear-gradient(225deg,
+    background: radial-gradient(
+        ellipse 135% 135% at 20% 40%,
         #000000 0%,
-        #000000 35%,
-        #003300 70%,
-        #004000 100%
+        #000000 25%,
+        #004080 55%,
+        #0066cc 100%
     );
     color: white;
 }
