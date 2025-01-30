@@ -35,9 +35,6 @@ body {
     height: 200vh;
     position: relative;
     overflow-x: hidden;
-    /* Safari overscroll fix */
-    overscroll-behavior-y: none;
-    -webkit-overscroll-behavior-y: none;
 }
 
 /* ==========================================================================
@@ -75,9 +72,9 @@ body {
     border-radius: 60px 60px 0 0;
     z-index: 2;
     transition: transform 0.3s ease;
-    /* Safari scroll constraint */
-    min-height: -webkit-fill-available;
-    max-height: calc(100vh + 7.5vh);
+    /* Safari fix */
+    transform: translate3d(0,0,0);
+    -webkit-transform: translate3d(0,0,0);
 }
 
 /* ==========================================================================
