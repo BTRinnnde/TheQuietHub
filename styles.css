@@ -11,6 +11,7 @@ html {
     scrollbar-width: none;
     -ms-overflow-style: none;
     scroll-behavior: smooth;
+    background: #000000;  /* Safari pull-to-refresh color */
 }
 
 html::-webkit-scrollbar {
@@ -20,7 +21,7 @@ html::-webkit-scrollbar {
 body {
     font-family: 'Poppins', Arial, sans-serif;
     overflow-x: hidden;
-    background: #002B00;
+    background: #000000;
 }
 
 @font-face {
@@ -34,6 +35,9 @@ body {
     height: 200vh;
     position: relative;
     overflow-x: hidden;
+    /* Safari overscroll fix */
+    overscroll-behavior-y: none;
+    -webkit-overscroll-behavior-y: none;
 }
 
 /* ==========================================================================
@@ -71,6 +75,9 @@ body {
     border-radius: 60px 60px 0 0;
     z-index: 2;
     transition: transform 0.3s ease;
+    /* Safari scroll constraint */
+    min-height: -webkit-fill-available;
+    max-height: calc(100vh + 7.5vh);
 }
 
 /* ==========================================================================
