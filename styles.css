@@ -270,6 +270,8 @@ body {
     opacity: 0;
     transition: opacity 0.3s ease;
     padding-top: 15vh;
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
 }
 
 .element-modal.show {
@@ -356,6 +358,7 @@ body {
     -webkit-transform-style: preserve-3d;
     backface-visibility: hidden;
     -webkit-backface-visibility: hidden;
+    -webkit-perspective: 1000px;
 }
 
 .cube {
