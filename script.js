@@ -201,8 +201,49 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
         
+        const appleIcon = document.createElement('img');
+        appleIcon.src = 'images/apple.png';
+        appleIcon.className = 'platform-icon';
+        appleIcon.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const elementId = element.getAttribute('data-element');
+            switch(elementId) {
+                case '1':  // Peaceful Piano
+                    window.open('https://music.apple.com/no/playlist/peaceful-piano/pl.u-oZylD6gsGlJWPP3', '_blank');
+                    break;
+                case '2':  // Gentle Jazz
+                    window.open('https://music.apple.com/no/playlist/gentle-jazz/pl.u-xlyNE32CJDL4XXA', '_blank');
+                    break;
+                case '3':  // Lofi Dreams
+                    window.open('https://music.apple.com/no/playlist/lofi-dreams/pl.u-kv9l2aJTJVZrXXv', '_blank');
+                    break;
+                case 'modal1':  // White Noise
+                    window.open('https://music.apple.com/no/playlist/white-noise/pl.u-KVXBkPPFLRWrzzv', '_blank');
+                    break;
+                case 'modal2':  // Brown Noise
+                    window.open('https://music.apple.com/no/playlist/brown-noise/pl.u-8aAVZy9IvL2zNNX', '_blank');
+                    break;
+                case 'modal3':  // Pink Noise
+                    window.open('https://music.apple.com/no/playlist/pink-noise/pl.u-oZylD0lTGlJWPP3', '_blank');
+                    break;
+                case 'modal4':  // Forest
+                    window.open('https://music.apple.com/no/playlist/relaxing-forest-ambience/pl.u-oZylD1esGlJWPP3', '_blank');
+                    break;
+                case 'modal5':  // Creek
+                    window.open('https://music.apple.com/no/playlist/soothing-creek-sounds/pl.u-WabZv4PSel2aWWE', '_blank');
+                    break;
+                case 'modal6':  // Rain
+                    window.open('https://music.apple.com/no/playlist/gentle-rainstorm-sounds/pl.u-8aAVZ5jHvL2zNNX', '_blank');
+                    break;
+                case 'modal7':  // Thunder
+                    window.open('https://music.apple.com/no/playlist/relaxing-thunderstorm-sounds/pl.u-NpXmze4t4gKovvl', '_blank');
+                    break;
+            }
+        });
+        
         iconsContainer.appendChild(spotifyIcon);
         iconsContainer.appendChild(youtubeIcon);
+        iconsContainer.appendChild(appleIcon);
         
         // Append in correct order
         content.appendChild(labelElement);
