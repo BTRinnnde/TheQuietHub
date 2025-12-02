@@ -14,6 +14,18 @@
     <meta property="og:description" content="Your personal space for focus, study, and relaxation with curated playlists">
     <meta property="og:image" content="images/og-preview.jpg">
     <meta property="og:url" content="https://thequiethub.com">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="The Quiet Hub">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <meta name="theme-color" content="#000000">
+    <meta name="color-scheme" content="dark">
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="The Quiet Hub - Your Space for Focus, Study & Relaxation">
+    <meta name="twitter:description" content="Your personal space for focus, study, and relaxation with curated playlists">
+    <meta name="twitter:image" content="https://thequiethub.com/images/og-preview.jpg">
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://thequiethub.com/">
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="my-favicon/favicon-96x96.png" sizes="96x96" />
     <link rel="icon" type="image/svg+xml" href="my-favicon/favicon.svg" />
@@ -21,12 +33,15 @@
     <link rel="apple-touch-icon" sizes="180x180" href="my-favicon/apple-touch-icon.png" />
     <meta name="apple-mobile-web-app-title" content="Quiet" />
     <link rel="manifest" href="my-favicon/site.webmanifest" />
-    <title>Quiet</title>
+    <title>The Quiet Hub - Focus Music, Study Music & Ambient Sounds | Peaceful Piano, Jazz, Lofi & Nature Sounds</title>
+    <!-- Preload critical resources -->
+    <link rel="preload" href="fonts/Poppins-ExtraBold.ttf" as="font" type="font/ttf" crossorigin>
+    <link rel="preload" href="styles.css" as="style">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="page-wrapper">
-        <section class="top-section">
+    <main class="page-wrapper">
+        <section class="top-section" aria-label="Hero section">
             <div id="globe-wrapper">
                 <canvas id="c"></canvas>
                 <h2 class="globe-title">The Quiet Hub</h2>
@@ -53,7 +68,7 @@
 
         <section class="bottom-section">
             <div class="arrow-container">
-                <svg class="arrow-icon" width="30" height="30" viewBox="0 0 30 30">
+                <svg class="arrow-icon" width="30" height="30" viewBox="0 0 30 30" aria-hidden="true">
                     <path d="M3 22 L15 10 L27 22" stroke="#FFFFFF" fill="none" stroke-width="2.5" stroke-linecap="round"/>
                 </svg>
             </div>
@@ -66,21 +81,32 @@
             <div class="elements-container">
                 <div class="element-wrapper">
                     <div class="element clickable" data-element="1" 
-                         style="background-image: url('images/peacefulpiano.png');"></div>
+                         style="background-image: url('images/peacefulpiano.png');"
+                         aria-label="Peaceful Piano playlist"
+                         role="button"
+                         tabindex="0"></div>
                     <span class="element-label">Peaceful Piano</span>
                 </div>
                 <div class="element-wrapper">
                     <div class="element clickable" data-element="2" 
-                         style="background-image: url('images/elegantjazz.png');"></div>
+                         style="background-image: url('images/elegantjazz.png');"
+                         aria-label="Elegant Jazz playlist"
+                         role="button"
+                         tabindex="0"></div>
                     <span class="element-label">Elegant Jazz</span>
                 </div>
                 <div class="element-wrapper">
                     <div class="element clickable" data-element="3" 
-                         style="background-image: url('images/lofidreams.png');"></div>
+                         style="background-image: url('images/lofidreams.png');"
+                         aria-label="Lofi Dreams playlist"
+                         role="button"
+                         tabindex="0"></div>
                     <span class="element-label">Lofi Dreams</span>
                 </div>
                 <div class="element-wrapper">
-                    <div class="element folder">
+                    <div class="element folder" aria-label="Ambient Noise folder"
+                         role="button"
+                         tabindex="0">
                         <div class="folder-grid">
                             <div class="folder-grid-item"></div>
                             <div class="folder-grid-item"></div>
@@ -95,31 +121,43 @@
                             </div>
                         </div>
                     </div>
+                    <span class="element-label">Ambient</span>
                 </div>
             </div>
         </section>
-    </div>
+    </main>
 
-    <div class="modal" id="folderModal">
+    <div class="modal" id="folderModal" role="dialog" aria-modal="true" aria-labelledby="folderModalTitle">
         <div class="modal-content">
             <div class="modal-grid">
                 <div class="modal-element-wrapper">
                     <div class="modal-element clickable" data-element="modal1" 
-                         style="background-image: url('images/whitenoise.png');"></div>
+                         style="background-image: url('images/whitenoise.png');"
+                         aria-label="White Noise playlist"
+                         role="button"
+                         tabindex="0"></div>
                     <span class="modal-element-label">White Noise</span>
                 </div>
                 <div class="modal-element-wrapper">
                     <div class="modal-element clickable" data-element="modal2" 
-                         style="background-image: url('images/brownnoise.png');"></div>
+                         style="background-image: url('images/brownnoise.png');"
+                         aria-label="Brown Noise playlist"
+                         role="button"
+                         tabindex="0"></div>
                     <span class="modal-element-label">Brown Noise</span>
                 </div>
                 <div class="modal-element-wrapper">
                     <div class="modal-element clickable" data-element="modal3" 
-                         style="background-image: url('images/pinknoise.png');"></div>
+                         style="background-image: url('images/pinknoise.png');"
+                         aria-label="Pink Noise playlist"
+                         role="button"
+                         tabindex="0"></div>
                     <span class="modal-element-label">Pink Noise</span>
                 </div>
                 <div class="modal-element-wrapper">
-                    <div class="modal-element folder" id="innerFolder">
+                    <div class="modal-element folder" id="innerFolder" aria-label="Nature sounds folder"
+                         role="button"
+                         tabindex="0">
                         <div class="folder-grid">
                             <div class="folder-grid-item"></div>
                             <div class="folder-grid-item"></div>
@@ -127,43 +165,122 @@
                             <div class="folder-grid-item"></div>
                         </div>
                     </div>
+                    <span class="modal-element-label">Nature</span>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="modal" id="innerFolderModal">
+    <div class="modal" id="innerFolderModal" role="dialog" aria-modal="true" aria-labelledby="innerFolderModalTitle">
         <div class="modal-content">
             <div class="modal-grid">
                 <div class="modal-element-wrapper">
                     <div class="modal-element clickable" data-element="modal4" 
                          data-full-name="Relaxing Forest Ambience"
-                         style="background-image: url('images/nature.png');"></div>
+                         style="background-image: url('images/nature.png');"
+                         aria-label="Relaxing Forest Ambience playlist"
+                         role="button"
+                         tabindex="0"></div>
                     <span class="modal-element-label">Forest</span>
                 </div>
                 <div class="modal-element-wrapper">
                     <div class="modal-element clickable" data-element="modal5" 
                          data-full-name="Soothing Creek Sounds"
-                         style="background-image: url('images/creek.png');"></div>
+                         style="background-image: url('images/creek.png');"
+                         aria-label="Soothing Creek Sounds playlist"
+                         role="button"
+                         tabindex="0"></div>
                     <span class="modal-element-label">Creek</span>
                 </div>
                 <div class="modal-element-wrapper">
                     <div class="modal-element clickable" data-element="modal6" 
                          data-full-name="Gentle Rainstorm Sounds"
-                         style="background-image: url('images/rain.png');"></div>
+                         style="background-image: url('images/rain.png');"
+                         aria-label="Gentle Rainstorm Sounds playlist"
+                         role="button"
+                         tabindex="0"></div>
                     <span class="modal-element-label">Rain</span>
                 </div>
                 <div class="modal-element-wrapper">
                     <div class="modal-element clickable" data-element="modal7" 
                          data-full-name="Relaxing Thunderstorm Sounds"
-                         style="background-image: url('images/thunder.png');"></div>
+                         style="background-image: url('images/thunder.png');"
+                         aria-label="Relaxing Thunderstorm Sounds playlist"
+                         role="button"
+                         tabindex="0"></div>
                     <span class="modal-element-label">Thunder</span>
                 </div>
             </div>
         </div>
     </div>
 
-    <script src="script.js"></script>
-    <script src="globe-animation/globe.js"></script>
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "The Quiet Hub",
+      "alternateName": "Quiet",
+      "description": "Your space for focus, study, and relaxation with ambient sounds and music",
+      "url": "https://thequiethub.com",
+      "inLanguage": "en",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://thequiethub.com/?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "The Quiet Hub"
+      }
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "CollectionPage",
+      "name": "The Quiet Hub - Music Playlists",
+      "description": "Curated playlists for focus, study, and relaxation including peaceful piano, elegant jazz, lofi dreams, ambient noise, and nature sounds",
+      "url": "https://thequiethub.com",
+      "inLanguage": "en",
+      "mainEntity": {
+        "@type": "ItemList",
+        "numberOfItems": 4,
+        "itemListElement": [
+          {
+            "@type": "MusicPlaylist",
+            "position": 1,
+            "name": "Peaceful Piano",
+            "description": "Calming piano music for focus and relaxation",
+            "genre": "Piano, Instrumental, Ambient"
+          },
+          {
+            "@type": "MusicPlaylist",
+            "position": 2,
+            "name": "Elegant Jazz",
+            "description": "Smooth jazz music for study and productivity",
+            "genre": "Jazz, Instrumental"
+          },
+          {
+            "@type": "MusicPlaylist",
+            "position": 3,
+            "name": "Lofi Dreams",
+            "description": "Chill lofi beats for studying and focus",
+            "genre": "Lo-Fi, Hip Hop, Instrumental"
+          },
+          {
+            "@type": "ItemList",
+            "position": 4,
+            "name": "Ambient Noise",
+            "description": "Collection of ambient noise playlists including white noise, brown noise, pink noise, and nature sounds",
+            "numberOfItems": 7
+          }
+        ]
+      }
+    }
+    </script>
+
+    <script src="script.js" defer></script>
+    <script src="globe-animation/globe.js" defer></script>
 </body>
 </html> 
