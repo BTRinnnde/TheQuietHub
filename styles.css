@@ -59,7 +59,7 @@ body {
 }
 
 .bottom-section {
-    height: 107.5vh;
+    min-height: 107.5vh;
     background: radial-gradient(
         ellipse 135% 135% at 20% 40%,
         #000000 0%,
@@ -75,6 +75,11 @@ body {
     /* Safari fix */
     transform: translate3d(0,0,0);
     -webkit-transform: translate3d(0,0,0);
+}
+
+.bottom-section.info-view {
+    min-height: 107.5vh;
+    padding-bottom: 10vh;
 }
 
 /* ==========================================================================
@@ -118,6 +123,15 @@ body {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Hover effect for clickable elements on larger screens */
+@media screen and (min-width: 769px) {
+    .element.clickable:hover,
+    .modal-element.clickable:hover {
+        transform: scale(1.05);
+    }
 }
 
 .element-wrapper, .modal-element-wrapper {
@@ -131,6 +145,24 @@ body {
     color: #FFFFFF;
     font-size: 0.9rem;
     text-align: center;
+}
+
+.element-modal-learn-more {
+    position: absolute;
+    top: calc(100% + 0.75rem);
+    left: 50%;
+    transform: translateX(-50%);
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.95rem;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: color 0.2s ease;
+    z-index: 1;
+}
+
+.element-modal-learn-more:hover {
+    color: #45b6fe;
+    text-decoration: underline;
 }
 
 /* 4.2 Folders */
@@ -452,6 +484,32 @@ body {
     }
 }
 
+@keyframes pulse-scale {
+    0% {
+        transform: scale(1);
+        opacity: 0.7;
+    }
+    50% {
+        transform: scale(1.1);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 0.7;
+    }
+}
+
+.arrow-controls {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 30px;
+    height: 12vh;
+    z-index: 1;
+    pointer-events: none;
+}
+
 .arrow-container {
     position: absolute;
     top: 2vh;
@@ -461,7 +519,44 @@ body {
     justify-content: center;
     align-items: center;
     height: 30px;
+    width: 30px;
+    padding: 0;
+    margin: 0;
+    border: none;
+    background: none;
     animation: pulse 2s ease-in-out infinite;
+}
+
+.arrow-controls .arrow-container {
+    left: 0;
+    transform: none;
+    pointer-events: auto;
+    animation: pulse-scale 2s ease-in-out infinite;
+}
+
+/* Peek of bottom panel is 7.5vh (100vh - 92.5vh margin).
+   Up arrow sits in that peek; down arrow sits just past it. */
+.scroll-up-arrow {
+    top: 1.5vh;
+}
+
+.scroll-down-arrow {
+    top: calc(7.5vh + 0.35vh);
+}
+
+button.arrow-container {
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+}
+
+button.arrow-container:focus {
+    outline: none;
+}
+
+button.arrow-container:focus-visible {
+    outline: 2px solid #45b6fe;
+    outline-offset: 4px;
+    border-radius: 4px;
 }
 
 /* ==========================================================================
@@ -522,6 +617,177 @@ body {
             0% 100%
         );
     }
+}
+
+/* ==========================================================================
+   7.5 Info Link & Info View
+   ========================================================================== */
+.info-link {
+    position: absolute;
+    bottom: 3vh;
+    left: 50%;
+    transform: translateX(-50%);
+    background: none;
+    border: none;
+    color: #FFFFFF;
+    font-family: 'Poppins', Arial, sans-serif;
+    font-size: 0.95rem;
+    cursor: pointer;
+    padding: 0.5rem 1rem;
+    transition: opacity 0.3s ease, transform 0.2s ease;
+    z-index: 1;
+    text-decoration: none;
+    opacity: 0.8;
+}
+
+.info-link:hover {
+    opacity: 1;
+    transform: translateX(-50%) translateY(-2px);
+}
+
+.info-link:focus {
+    outline: 2px solid #45b6fe;
+    outline-offset: 4px;
+    border-radius: 4px;
+}
+
+.home-link {
+    opacity: 0.8;
+    /* Ensure home-link uses same positioning as info-link */
+    position: absolute;
+    bottom: 3vh;
+    left: 50%;
+    transform: translateX(-50%);
+    background: none;
+    border: none;
+    color: #FFFFFF;
+    font-family: 'Poppins', Arial, sans-serif;
+    font-size: 0.95rem;
+    cursor: pointer;
+    padding: 0.5rem 1rem;
+    transition: opacity 0.3s ease, transform 0.2s ease;
+    z-index: 1;
+    text-decoration: none;
+}
+
+.home-link:hover {
+    opacity: 1;
+    transform: translateX(-50%) translateY(-2px);
+}
+
+.home-link:focus {
+    outline: 2px solid #45b6fe;
+    outline-offset: 4px;
+    border-radius: 4px;
+}
+
+/* Info View Section */
+.bottom-section.info-view {
+    display: none;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    /* Ensure same base positioning as main bottom section */
+    min-height: 107.5vh;
+    background: radial-gradient(
+        ellipse 135% 135% at 20% 40%,
+        #000000 0%,
+        #000000 25%,
+        #004080 55%,
+        #0066cc 100%
+    );
+    position: relative;
+    margin-top: 92.5vh;
+    border-radius: 60px 60px 0 0;
+    z-index: 2;
+    transform: translate3d(0,0,0);
+    -webkit-transform: translate3d(0,0,0);
+}
+
+.bottom-section.info-view.show {
+    display: block;
+    opacity: 1;
+}
+
+.bottom-section:not(.info-view).hide {
+    display: none;
+}
+
+.info-content-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    max-width: 900px;
+    z-index: 1;
+    max-height: calc(100vh - 20vh);
+    overflow-y: auto;
+    padding: 2rem 0;
+}
+
+.info-content {
+    color: #FFFFFF;
+    line-height: 1.8;
+    text-align: left;
+}
+
+.info-content h3 {
+    color: #FFFFFF;
+    font-size: 2rem;
+    margin: 3rem 0 1.5rem 0;
+    font-weight: bold;
+    font-family: 'Poppins', Arial, sans-serif;
+}
+
+.info-content h3:first-child {
+    margin-top: 0;
+}
+
+.info-content p {
+    margin: 0 0 2rem 0;
+    font-size: 1.3rem;
+    color: rgba(255, 255, 255, 0.95);
+    font-family: 'Poppins', Arial, sans-serif;
+    font-weight: normal;
+}
+
+.info-content p:last-child {
+    margin-bottom: 0;
+}
+
+.playlist-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 2rem 0;
+}
+
+.playlist-list li {
+    margin: 0 0 1rem 0;
+    font-size: 1.15rem;
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.95);
+}
+
+.playlist-list a {
+    color: #45b6fe;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.playlist-list a:hover {
+    text-decoration: underline;
+}
+
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
 }
 
 /* ==========================================================================
@@ -631,6 +897,38 @@ body {
     .globe-title {
         font-size: 2.5rem;
     }
+
+    /* Info Link & Info View Adjustments */
+    .info-link,
+    .home-link {
+        bottom: 2vh;
+        font-size: 0.9rem;
+    }
+
+    .info-content-container {
+        width: 95%;
+        max-width: none;
+        padding: 1rem 0;
+        max-height: calc(100vh - 15vh);
+    }
+
+    .info-content h3 {
+        font-size: 1.5rem;
+        margin: 2rem 0 1rem 0;
+    }
+
+    .info-content p {
+        font-size: 1rem;
+        margin: 0 0 1.5rem 0;
+    }
+
+    .playlist-list li {
+        font-size: 0.95rem;
+    }
+
+    .bottom-section.info-view {
+        padding-bottom: 15vh;
+    }
 }
 
 /* Small screens (480px and below) */
@@ -694,7 +992,38 @@ body {
         font-size: 2rem;
     }
 
+    /* Info Link & Info View Adjustments */
+    .info-link,
+    .home-link {
+        bottom: 1.5vh;
+        font-size: 0.85rem;
+        padding: 0.4rem 0.8rem;
+    }
 
+    .info-content-container {
+        width: 95%;
+        padding: 1rem 0;
+        max-height: calc(100vh - 12vh);
+    }
+
+    .info-content h3 {
+        font-size: 1.2rem;
+        margin: 1.5rem 0 0.8rem 0;
+    }
+
+    .info-content p {
+        font-size: 0.9rem;
+        line-height: 1.7;
+        margin: 0 0 1.2rem 0;
+    }
+
+    .playlist-list li {
+        font-size: 0.85rem;
+    }
+
+    .bottom-section.info-view {
+        padding-bottom: 12vh;
+    }
 }
 
 /* Add to the end of your styles.css */

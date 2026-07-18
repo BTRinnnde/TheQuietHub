@@ -247,10 +247,31 @@ document.addEventListener('DOMContentLoaded', () => {
         iconsContainer.appendChild(spotifyIcon);
         iconsContainer.appendChild(youtubeIcon);
         iconsContainer.appendChild(appleIcon);
+
+        const playlistPages = {
+            '1': '/playlists/peaceful-piano/',
+            '2': '/playlists/elegant-jazz/',
+            '3': '/playlists/lofi-dreams/',
+            'modal1': '/playlists/white-noise/',
+            'modal2': '/playlists/brown-noise/',
+            'modal3': '/playlists/pink-noise/',
+            'modal4': '/playlists/forest-sounds/',
+            'modal5': '/playlists/creek-sounds/',
+            'modal6': '/playlists/rain-sounds/',
+            'modal7': '/playlists/thunder-sounds/'
+        };
+
+        const elementId = element.getAttribute('data-element');
+        const learnMore = document.createElement('a');
+        learnMore.className = 'element-modal-learn-more';
+        learnMore.href = playlistPages[elementId] || '/';
+        learnMore.textContent = 'Learn more';
+        learnMore.addEventListener('click', (e) => e.stopPropagation());
         
         // Append in correct order
         content.appendChild(labelElement);
         content.appendChild(clone);
+        content.appendChild(learnMore);
         content.appendChild(iconsContainer);
         elementModal.appendChild(content);
         
@@ -318,21 +339,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ========== Event Listeners ==========
-    // Element hover handlers for large screens
-    if (window.matchMedia("(min-width: 769px)").matches) {
-        clickableElements.forEach(element => {
-            // Set initial state with smooth transition
-            element.style.transition = 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
-            
-            element.addEventListener('mouseenter', () => {
-                element.style.transform = 'scale(1.05)';
-            });
-            
-            element.addEventListener('mouseleave', () => {
-                element.style.transform = 'scale(1)';
-            });
-        });
-    }
+    // Element hover handlers - CSS handles the hover effect via :hover pseudo-class
+    // The transition is defined in CSS, so the hover should work automatically
+    // We keep this section for any future JavaScript-based hover enhancements if needed
 
     // Folder click handlers
     folder.addEventListener('click', () => handleFolderClick(modal));
@@ -359,6 +368,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (e.key === 'Escape') {
             const elementModal = document.querySelector('.element-modal.show');
             const innerFolderModal = document.querySelector('#innerFolderModal.show');
+            const infoViewOpen = document.getElementById('infoView')?.classList.contains('show');
             
             // Handle element modal escape
             if (elementModal) {
@@ -376,6 +386,13 @@ document.addEventListener('DOMContentLoaded', () => {
                     innerFolderModal.style.backdropFilter = 'blur(5px)';
                     innerFolderModal.style.webkitBackdropFilter = 'blur(5px)';
                 }
+                return;
+            }
+            
+            // Handle info view escape - go back to main view
+            if (infoViewOpen && window.homeLinkRef) {
+                // Click the home link which handles scroll restoration
+                window.homeLinkRef.click();
                 return;
             }
             
@@ -412,7 +429,132 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    // ========== Info View Toggle Functionality ==========
+    const infoLink = document.getElementById('infoLink');
+    const homeLink = document.getElementById('homeLink');
+    const bottomSection = document.getElementById('mainBottomSection');
+    const infoView = document.getElementById('infoView');
+    
+    if (infoLink && homeLink && bottomSection && infoView) {
+        // Remove blue highlight on touch devices
+        infoLink.style.webkitTapHighlightColor = 'transparent';
+        homeLink.style.webkitTapHighlightColor = 'transparent';
+        
+        // Store scroll position before opening info view
+        let scrollPositionBeforeInfo = 0;
+
+        // Show info view, hide main bottom section
+        infoLink.addEventListener('click', () => {
+            // Store current scroll position before opening info view
+            scrollPositionBeforeInfo = window.pageYOffset || document.documentElement.scrollTop;
+            
+            bottomSection.classList.add('hide');
+            infoView.classList.add('show');
+
+            const infoContentContainer = infoView.querySelector('.info-content-container');
+            if (infoContentContainer) {
+                infoContentContainer.scrollTop = 0;
+            }
+        });
+
+        // Show main bottom section, hide info view
+        homeLink.addEventListener('click', () => {
+            infoView.classList.remove('show');
+            bottomSection.classList.remove('hide');
+            
+            // Restore scroll position to the content area
+            requestAnimationFrame(() => {
+                window.scrollTo({
+                    top: scrollPositionBeforeInfo,
+                    behavior: 'instant'
+                });
+            });
+        });
+
+        // Keyboard accessibility
+        infoLink.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                infoLink.click();
+            }
+        });
+
+        homeLink.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                homeLink.click();
+            }
+        });
+
+        // Store reference for escape key handler
+        window.homeLinkRef = homeLink;
+
+        // ========== Scroll Handling for Info Content ==========
+        const infoContentContainer = infoView.querySelector('.info-content-container');
+        
+        if (infoContentContainer) {
+            let isHoveringContent = false;
+
+            // Track when mouse enters the content area
+            infoContentContainer.addEventListener('mouseenter', () => {
+                isHoveringContent = true;
+            });
+
+            // Track when mouse leaves the content area
+            infoContentContainer.addEventListener('mouseleave', () => {
+                isHoveringContent = false;
+            });
+
+            // Handle wheel events when hovering over content
+            infoContentContainer.addEventListener('wheel', (e) => {
+                if (!isHoveringContent) return;
+
+                const container = infoContentContainer;
+                const scrollTop = container.scrollTop;
+                const scrollHeight = container.scrollHeight;
+                const clientHeight = container.clientHeight;
+                
+                // Check if we're at the top and trying to scroll up
+                const isAtTop = scrollTop === 0;
+                const isAtBottom = scrollTop + clientHeight >= scrollHeight - 1; // -1 for rounding errors
+                
+                // If scrolling up and at top, prevent default
+                if (e.deltaY < 0 && isAtTop) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    return;
+                }
+                
+                // If scrolling down and at bottom, prevent default
+                if (e.deltaY > 0 && isAtBottom) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    return;
+                }
+                
+                // Otherwise, allow the scroll but prevent it from propagating to window
+                e.stopPropagation();
+            }, { passive: false });
+        }
+    }
+
     // ========== Initialization ==========
+    // Scroll arrows on content + info panels — visibility is natural via scroll
+    const getMaxScroll = () =>
+        Math.max(0, document.documentElement.scrollHeight - window.innerHeight);
+
+    document.querySelectorAll('.scroll-up-arrow').forEach((arrow) => {
+        arrow.addEventListener('click', () => {
+            window.scrollTo({ top: getMaxScroll(), behavior: 'smooth' });
+        });
+    });
+
+    document.querySelectorAll('.scroll-down-arrow').forEach((arrow) => {
+        arrow.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    });
+
     // Initial cube state
     faces[0].style.opacity = '1';
 
