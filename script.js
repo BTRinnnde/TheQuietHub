@@ -22,6 +22,41 @@ document.addEventListener('DOMContentLoaded', () => {
     let rotation = 0;
     let rotationInterval;
 
+    // ========== Cover image loading (WebP with JPEG fallback, lazy where possible) ==========
+    const setCoverBackground = (el) => {
+        if (!el || el.dataset.bgLoaded === '1') return;
+        const webp = el.dataset.bgWebp;
+        const jpg = el.dataset.bgJpg;
+        if (!webp || !jpg) return;
+        el.style.backgroundImage = `url("${jpg}")`;
+        el.style.backgroundImage = `image-set(url("${webp}") type("image/webp"), url("${jpg}") type("image/jpeg"))`;
+        el.dataset.bgLoaded = '1';
+    };
+
+    const hydrateCoversIn = (root) => {
+        (root || document).querySelectorAll('[data-bg-webp]').forEach(setCoverBackground);
+    };
+
+    // Homepage grid covers: load when near viewport (below-the-fold until scroll)
+    const lazyCoverObserver = ('IntersectionObserver' in window)
+        ? new IntersectionObserver((entries, observer) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    setCoverBackground(entry.target);
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { rootMargin: '200px 0px' })
+        : null;
+
+    document.querySelectorAll('.bottom-section .element[data-bg-webp]').forEach((el) => {
+        if (lazyCoverObserver) {
+            lazyCoverObserver.observe(el);
+        } else {
+            setCoverBackground(el);
+        }
+    });
+
     // ========== Utility Functions ==========
     const toggleScroll = (disable) => {
         document.body.style.overflow = disable ? 'hidden' : '';
@@ -38,7 +73,10 @@ document.addEventListener('DOMContentLoaded', () => {
         targetModal.style.backgroundColor = '';
         targetModal.style.backdropFilter = '';
         targetModal.style.webkitBackdropFilter = '';
-        
+
+        // Load full-size covers only when the modal is opened
+        hydrateCoversIn(targetModal);
+
         targetModal.classList.add('show');
         toggleScroll(true);  // Disable scrolling
     };
@@ -122,7 +160,11 @@ document.addEventListener('DOMContentLoaded', () => {
         iconsContainer.className = 'platform-icons';
         
         const spotifyIcon = document.createElement('img');
-        spotifyIcon.src = 'images/spotify.png';
+        spotifyIcon.src = 'images/spotify.webp';
+        spotifyIcon.onerror = () => { spotifyIcon.src = 'images/spotify.png'; };
+        spotifyIcon.width = 60;
+        spotifyIcon.height = 60;
+        spotifyIcon.decoding = 'async';
         spotifyIcon.className = 'platform-icon';
         spotifyIcon.alt = 'Open playlist on Spotify';
         spotifyIcon.addEventListener('click', (e) => {
@@ -163,7 +205,11 @@ document.addEventListener('DOMContentLoaded', () => {
         });
         
         const youtubeIcon = document.createElement('img');
-        youtubeIcon.src = 'images/youtube.png';
+        youtubeIcon.src = 'images/youtube.webp';
+        youtubeIcon.onerror = () => { youtubeIcon.src = 'images/youtube.png'; };
+        youtubeIcon.width = 60;
+        youtubeIcon.height = 60;
+        youtubeIcon.decoding = 'async';
         youtubeIcon.className = 'platform-icon';
         youtubeIcon.alt = 'Open playlist on YouTube Music';
         youtubeIcon.addEventListener('click', (e) => {
@@ -204,7 +250,11 @@ document.addEventListener('DOMContentLoaded', () => {
         });
         
         const appleIcon = document.createElement('img');
-        appleIcon.src = 'images/apple.png';
+        appleIcon.src = 'images/apple.webp';
+        appleIcon.onerror = () => { appleIcon.src = 'images/apple.png'; };
+        appleIcon.width = 60;
+        appleIcon.height = 60;
+        appleIcon.decoding = 'async';
         appleIcon.className = 'platform-icon';
         appleIcon.alt = 'Open playlist on Apple Music';
         appleIcon.addEventListener('click', (e) => {

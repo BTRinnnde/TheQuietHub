@@ -4,11 +4,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="x-dns-prefetch-control" content="on">
-    <link rel="preconnect" href="https://open.spotify.com">
-    <link rel="preconnect" href="https://music.youtube.com">
-    <link rel="dns-prefetch" href="https://open.spotify.com">
-    <link rel="dns-prefetch" href="https://music.youtube.com">
     <meta name="description"
         content="The Quiet Hub brings calming background music, ambient noise and natural sounds together in one place. Explore Peaceful Piano, Elegant Jazz, Lofi Dreams, white, brown and pink noise, plus forest, creek, rain and thunder sounds for study, focus, sleep and relaxation.">
     <meta name="keywords"
@@ -47,7 +42,7 @@
         plausible.init()
     </script>
     <!-- Preload critical resources -->
-    <link rel="preload" href="fonts/Poppins-ExtraBold.ttf" as="font" type="font/ttf" crossorigin>
+    <link rel="preload" href="fonts/Poppins-ExtraBold.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="styles.css" as="style">
     <link rel="stylesheet" href="styles.css">
 </head>
@@ -105,20 +100,20 @@
             <div class="elements-container">
                 <div class="element-wrapper">
                     <div class="element clickable" data-element="1"
-                        style="background-image: url('images/peacefulpiano.png');" aria-label="Peaceful Piano playlist"
-                        role="button" tabindex="0"></div>
+                        data-bg-webp="images/peacefulpiano.webp" data-bg-jpg="images/peacefulpiano.jpg"
+                        aria-label="Peaceful Piano playlist" role="button" tabindex="0"></div>
                     <span class="element-label">Peaceful Piano</span>
                 </div>
                 <div class="element-wrapper">
                     <div class="element clickable" data-element="2"
-                        style="background-image: url('images/elegantjazz.png');" aria-label="Elegant Jazz playlist"
-                        role="button" tabindex="0"></div>
+                        data-bg-webp="images/elegantjazz.webp" data-bg-jpg="images/elegantjazz.jpg"
+                        aria-label="Elegant Jazz playlist" role="button" tabindex="0"></div>
                     <span class="element-label">Elegant Jazz</span>
                 </div>
                 <div class="element-wrapper">
                     <div class="element clickable" data-element="3"
-                        style="background-image: url('images/lofidreams.png');" aria-label="Lofi Dreams playlist"
-                        role="button" tabindex="0"></div>
+                        data-bg-webp="images/lofidreams.webp" data-bg-jpg="images/lofidreams.jpg"
+                        aria-label="Lofi Dreams playlist" role="button" tabindex="0"></div>
                     <span class="element-label">Lofi Dreams</span>
                 </div>
                 <div class="element-wrapper">
@@ -215,20 +210,20 @@
             <div class="modal-grid">
                 <div class="modal-element-wrapper">
                     <div class="modal-element clickable" data-element="modal1"
-                        style="background-image: url('images/whitenoise.png');" aria-label="White Noise playlist"
-                        role="button" tabindex="0"></div>
+                        data-bg-webp="images/whitenoise.webp" data-bg-jpg="images/whitenoise.jpg"
+                        aria-label="White Noise playlist" role="button" tabindex="0"></div>
                     <span class="modal-element-label">White Noise</span>
                 </div>
                 <div class="modal-element-wrapper">
                     <div class="modal-element clickable" data-element="modal2"
-                        style="background-image: url('images/brownnoise.png');" aria-label="Brown Noise playlist"
-                        role="button" tabindex="0"></div>
+                        data-bg-webp="images/brownnoise.webp" data-bg-jpg="images/brownnoise.jpg"
+                        aria-label="Brown Noise playlist" role="button" tabindex="0"></div>
                     <span class="modal-element-label">Brown Noise</span>
                 </div>
                 <div class="modal-element-wrapper">
                     <div class="modal-element clickable" data-element="modal3"
-                        style="background-image: url('images/pinknoise.png');" aria-label="Pink Noise playlist"
-                        role="button" tabindex="0"></div>
+                        data-bg-webp="images/pinknoise.webp" data-bg-jpg="images/pinknoise.jpg"
+                        aria-label="Pink Noise playlist" role="button" tabindex="0"></div>
                     <span class="modal-element-label">Pink Noise</span>
                 </div>
                 <div class="modal-element-wrapper">
@@ -253,26 +248,26 @@
             <div class="modal-grid">
                 <div class="modal-element-wrapper">
                     <div class="modal-element clickable" data-element="modal4" data-full-name="Relaxing Forest Ambience"
-                        style="background-image: url('images/nature.png');"
+                        data-bg-webp="images/nature.webp" data-bg-jpg="images/nature.jpg"
                         aria-label="Relaxing Forest Ambience playlist" role="button" tabindex="0"></div>
                     <span class="modal-element-label">Forest</span>
                 </div>
                 <div class="modal-element-wrapper">
                     <div class="modal-element clickable" data-element="modal5" data-full-name="Soothing Creek Sounds"
-                        style="background-image: url('images/creek.png');" aria-label="Soothing Creek Sounds playlist"
-                        role="button" tabindex="0"></div>
+                        data-bg-webp="images/creek.webp" data-bg-jpg="images/creek.jpg"
+                        aria-label="Soothing Creek Sounds playlist" role="button" tabindex="0"></div>
                     <span class="modal-element-label">Creek</span>
                 </div>
                 <div class="modal-element-wrapper">
                     <div class="modal-element clickable" data-element="modal6" data-full-name="Gentle Rainstorm Sounds"
-                        style="background-image: url('images/rain.png');" aria-label="Gentle Rainstorm Sounds playlist"
-                        role="button" tabindex="0"></div>
+                        data-bg-webp="images/rain.webp" data-bg-jpg="images/rain.jpg"
+                        aria-label="Gentle Rainstorm Sounds playlist" role="button" tabindex="0"></div>
                     <span class="modal-element-label">Rain</span>
                 </div>
                 <div class="modal-element-wrapper">
                     <div class="modal-element clickable" data-element="modal7"
                         data-full-name="Relaxing Thunderstorm Sounds"
-                        style="background-image: url('images/thunder.png');"
+                        data-bg-webp="images/thunder.webp" data-bg-jpg="images/thunder.jpg"
                         aria-label="Relaxing Thunderstorm Sounds playlist" role="button" tabindex="0"></div>
                     <span class="modal-element-label">Thunder</span>
                 </div>

@@ -26,9 +26,11 @@ body {
 
 @font-face {
     font-family: 'Poppins';
-    src: url('fonts/Poppins-ExtraBold.ttf') format('truetype');
-    font-weight: 800;  /* ExtraBold weight */
+    src: url('fonts/Poppins-ExtraBold.woff2') format('woff2'),
+         url('fonts/Poppins-ExtraBold.ttf') format('truetype');
+    font-weight: 800;
     font-style: normal;
+    font-display: swap;
 }
 
 .page-wrapper {
@@ -235,20 +237,75 @@ body {
     background-position: center;
 }
 
-/* Folder Preview Images */
-.folder-grid-item:nth-child(1) { background-image: url('images/whitenoise.png'); }
-.folder-grid-item:nth-child(2) { background-image: url('images/brownnoise.png'); }
-.folder-grid-item:nth-child(3) { background-image: url('images/pinknoise.png'); }
+/* Folder Preview Images — tiny thumbs only (full covers load when modals open) */
+.folder-grid-item:nth-child(1) {
+    background-image: image-set(
+        url('images/thumbs/whitenoise.webp') type('image/webp'),
+        url('images/thumbs/whitenoise.png') type('image/png')
+    );
+}
+.folder-grid-item:nth-child(2) {
+    background-image: image-set(
+        url('images/thumbs/brownnoise.webp') type('image/webp'),
+        url('images/thumbs/brownnoise.png') type('image/png')
+    );
+}
+.folder-grid-item:nth-child(3) {
+    background-image: image-set(
+        url('images/thumbs/pinknoise.webp') type('image/webp'),
+        url('images/thumbs/pinknoise.png') type('image/png')
+    );
+}
 
-.folder-grid-item.folder-preview .mini-grid-item:nth-child(1) { background-image: url('images/nature.png'); }
-.folder-grid-item.folder-preview .mini-grid-item:nth-child(2) { background-image: url('images/creek.png'); }
-.folder-grid-item.folder-preview .mini-grid-item:nth-child(3) { background-image: url('images/rain.png'); }
-.folder-grid-item.folder-preview .mini-grid-item:nth-child(4) { background-image: url('images/thunder.png'); }
+.folder-grid-item.folder-preview .mini-grid-item:nth-child(1) {
+    background-image: image-set(
+        url('images/thumbs/nature.webp') type('image/webp'),
+        url('images/thumbs/nature.png') type('image/png')
+    );
+}
+.folder-grid-item.folder-preview .mini-grid-item:nth-child(2) {
+    background-image: image-set(
+        url('images/thumbs/creek.webp') type('image/webp'),
+        url('images/thumbs/creek.png') type('image/png')
+    );
+}
+.folder-grid-item.folder-preview .mini-grid-item:nth-child(3) {
+    background-image: image-set(
+        url('images/thumbs/rain.webp') type('image/webp'),
+        url('images/thumbs/rain.png') type('image/png')
+    );
+}
+.folder-grid-item.folder-preview .mini-grid-item:nth-child(4) {
+    background-image: image-set(
+        url('images/thumbs/thunder.webp') type('image/webp'),
+        url('images/thumbs/thunder.png') type('image/png')
+    );
+}
 
-#innerFolder .folder-grid-item:nth-child(1) { background-image: url('images/nature.png'); }
-#innerFolder .folder-grid-item:nth-child(2) { background-image: url('images/creek.png'); }
-#innerFolder .folder-grid-item:nth-child(3) { background-image: url('images/rain.png'); }
-#innerFolder .folder-grid-item:nth-child(4) { background-image: url('images/thunder.png'); }
+#innerFolder .folder-grid-item:nth-child(1) {
+    background-image: image-set(
+        url('images/thumbs/nature.webp') type('image/webp'),
+        url('images/thumbs/nature.png') type('image/png')
+    );
+}
+#innerFolder .folder-grid-item:nth-child(2) {
+    background-image: image-set(
+        url('images/thumbs/creek.webp') type('image/webp'),
+        url('images/thumbs/creek.png') type('image/png')
+    );
+}
+#innerFolder .folder-grid-item:nth-child(3) {
+    background-image: image-set(
+        url('images/thumbs/rain.webp') type('image/webp'),
+        url('images/thumbs/rain.png') type('image/png')
+    );
+}
+#innerFolder .folder-grid-item:nth-child(4) {
+    background-image: image-set(
+        url('images/thumbs/thunder.webp') type('image/webp'),
+        url('images/thumbs/thunder.png') type('image/png')
+    );
+}
 
 /* 4.3 Modals */
 .modal {

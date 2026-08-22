@@ -1,3 +1,31 @@
+/* Shared playlist page styles (self-contained — no homepage CSS) */
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    background: #000000;
+}
+
+body {
+    font-family: 'Poppins', Arial, sans-serif;
+    background: #000000;
+    overflow-x: hidden;
+}
+
+@font-face {
+    font-family: 'Poppins';
+    src: url('../../fonts/Poppins-ExtraBold.woff2') format('woff2'),
+         url('../../fonts/Poppins-ExtraBold.ttf') format('truetype');
+    font-weight: 800;
+    font-style: normal;
+    font-display: swap;
+}
+
 .playlist-page {
     position: relative;
     min-height: 100vh;
