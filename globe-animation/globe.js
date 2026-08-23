@@ -27,84 +27,100 @@ var s = c.width = c.height = 400,
 			}
 		};
 
+function anim(){
+		
+	window.requestAnimationFrame( anim );
 
-function drawGlobeFrame() {
-	ctx.clearRect(0, 0, s, s);
+	if (document.hidden) {
+		return;
+	}
+	
+	// Clear the canvas
+	ctx.clearRect( 0, 0, s, s );
+	
+	// Draw the wireframe
 	ctx.strokeStyle = 'rgba(69, 182, 254, 0.95)';
 	ctx.beginPath();
-
-	for (var i = 0; i < lines.length; ++i) {
-		var points = lines[i];
-
-		for (var j = 0; j < points.length; ++j) {
-			var point = points[j],
-				x = point.x,
-				y = point.y,
-				z = point.z;
-
+	
+	for( var i = 0; i < lines.length; ++i ){
+		
+		var points = lines[ i ];
+		
+		for( var j = 0; j < points.length; ++j ){
+			
+			var point = points[ j ],
+					x = point.x,
+					y = point.y,
+					z = point.z;
+			
 			var X = x;
 			x = x * rot.y.cos - z * rot.y.sin;
 			z = z * rot.y.cos + X * rot.y.sin;
-
+			
 			point.x = x;
 			point.z = z;
-
+			
 			var Y = y;
 			y = y * rot.z.cos - x * rot.z.sin;
 			x = x * rot.z.cos + Y * rot.z.sin;
-
+			
 			X = x;
 			x = x * rot.ay.cos - z * rot.ay.sin;
 			z = z * rot.ay.cos + X * rot.ay.sin;
-
+			
 			z += opts.depth;
-
+			
 			var scale = opts.focalLength / z,
-				sx = opts.center + scale * x,
-				sy = opts.center + scale * y;
-
+					sx = opts.center + scale * x,
+					sy = opts.center + scale * y;
+			
 			point.sx = sx;
 			point.sy = sy;
-
-			ctx[j === 0 ? 'moveTo' : 'lineTo'](sx, sy);
+			
+			//if( z < opts.depth )
+				ctx[ j === 0 ? 'moveTo' : 'lineTo' ]( sx, sy );
 		}
-
-		ctx.lineTo(points[0].sx, points[0].sy);
+					
+		// to prevent it from recalculating position of starting point twice but still closing the path
+		//if( points[ 0 ].z < opts.depth ) 
+			ctx.lineTo( points[ 0 ].sx, points[ 0 ].sy );
 	}
-
+	
 	ctx.stroke();
-}
-
-function anim() {
-	if (document.hidden || !globeVisible || reduceMotion) {
-		animRunning = false;
-		return;
-	}
-	animRunning = true;
-	window.requestAnimationFrame(anim);
-	drawGlobeFrame();
-}
-
-function reparseLines() {
-	for (var i = 0; i < lines.length; ++i) {
+	
+	//ctx.fillStyle = 'green';
+	//ctx.fill();
+	
+};
+function reparseLines(){
+	
+	// the lines will just have indications for angles
+	
+	for( var i = 0; i < lines.length; ++i ){
+		
 		var points = [];
-		for (var j = 0; j < lines[i].length; j += 2) {
-			var sinA = Math.sin(lines[i][j] * Math.PI),
-				cosA = Math.cos(lines[i][j] * Math.PI),
-				sinB = Math.sin(lines[i][j + 1] * Math.PI / 2),
-				cosB = Math.cos(lines[i][j + 1] * Math.PI / 2);
-
+		for( var j = 0; j < lines[ i ].length; j += 2 ){
+			
+			var sinA = Math.sin( lines[ i ][ j ] * Math.PI ),
+					cosA = Math.cos( lines[ i ][ j ] * Math.PI ),
+					sinB = Math.sin( lines[ i ][ j + 1 ] * Math.PI / 2 ),
+					cosB = Math.cos( lines[ i ][ j + 1 ] * Math.PI / 2 );
+			
 			points.push({
 				x: opts.globeRadius * cosA * cosB,
 				y: opts.globeRadius * sinB,
 				z: opts.globeRadius * sinA * cosB
 			});
 		}
-		lines[i] = points;
+		
+		lines[ i ] = points;
 	}
 }
 
-
+// each point is 2 angles in half turns
+// a, x[-1,1] = vertical circle
+// x[-1,1], .5 = equator
+// x[-1,1], a = parallel cirles at a
 var lines = [
 	// africa main continent
 	[
@@ -179,7 +195,7 @@ var lines = [
 		[-0.86, -0.208, -0.847, -0.183]
 	];
 
-﻿// debugging purposes
+// debugging purposes
 /* var deCanvas = document.createElement( 'canvas' ),
 		deCtx = deCanvas.getContext( '2d' ),
 
@@ -223,60 +239,5 @@ deCanvas.addEventListener( 'click', function( e ){
 	console.log( clicks );
 }) */
 
-var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-var globeVisible = true;
-var animRunning = false;
-
-function startAnim() {
-	if (!animRunning && !document.hidden && globeVisible && !reduceMotion) {
-		anim();
-	}
-}
-
-if (window.matchMedia) {
-	var motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
-	var onMotionChange = function (e) {
-		reduceMotion = e.matches;
-		if (reduceMotion) {
-			animRunning = false;
-			drawGlobeFrame();
-		} else {
-			startAnim();
-		}
-	};
-	if (motionQuery.addEventListener) {
-		motionQuery.addEventListener('change', onMotionChange);
-	} else if (motionQuery.addListener) {
-		motionQuery.addListener(onMotionChange);
-	}
-}
-
-document.addEventListener('visibilitychange', function () {
-	if (document.hidden) {
-		animRunning = false;
-	} else {
-		startAnim();
-	}
-});
-
-var globeWrapper = document.getElementById('globe-wrapper') || c;
-if ('IntersectionObserver' in window && globeWrapper) {
-	var globeObserver = new IntersectionObserver(function (entries) {
-		entries.forEach(function (entry) {
-			globeVisible = entry.isIntersecting;
-			if (globeVisible) {
-				startAnim();
-			} else {
-				animRunning = false;
-			}
-		});
-	}, { threshold: 0.05 });
-	globeObserver.observe(globeWrapper);
-}
-
 reparseLines();
-if (reduceMotion) {
-	drawGlobeFrame();
-} else {
-	startAnim();
-}
+anim();
