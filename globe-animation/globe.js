@@ -7,7 +7,7 @@ var s = c.width = c.height = 400,
 			focalLength: 300,
 			center: s / 2,
 			
-			rotYVel: .0025,
+			rotYVel: 0.0005,
 			baseXRot: -0.41, // 23.5 deg
 			afterYRot: -2,//Math.PI / 2,
 		},
