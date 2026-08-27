@@ -1,0 +1,4 @@
+recording,duration_seconds,sample_rate_hz,channels,spectral_slope_db_per_octave_100Hz_10kHz,spectral_centroid_hz_20Hz_18kHz,mean_1s_rms_dbfs,1s_rms_level_sd_db,peak_dbfs,crest_factor_db,digital_clipping_detected
+White noise,180.715,44100,2,-8.987,512.3,-28.7,0.151,-11.93,16.77,False
+Pink noise,180.611,44100,2,-2.925,2472.9,-23.08,0.275,-6.15,16.93,False
+Brown noise,180.14,44100,2,-10.922,68.6,-19.64,0.502,-3.97,15.67,False

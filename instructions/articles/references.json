@@ -1,0 +1,334 @@
+[
+  {
+    "id": "ref-riedy-2021",
+    "authors": "Riedy SM, Smith MG, Rocha S, Basner M",
+    "year": 2021,
+    "title": "Noise as a sleep aid: A systematic review",
+    "journal": "Sleep Medicine Reviews",
+    "doi": "10.1016/j.smrv.2020.101385",
+    "used_in": [
+      "article-1"
+    ],
+    "url": "https://doi.org/10.1016/j.smrv.2020.101385"
+  },
+  {
+    "id": "ref-capezuti-2022",
+    "authors": "Capezuti E, Pain K, Alamag E, Chen XQ, Philibert V, Krieger AC",
+    "year": 2022,
+    "title": "Systematic review: auditory stimulation and sleep",
+    "journal": "Journal of Clinical Sleep Medicine",
+    "doi": "10.5664/jcsm.9860",
+    "used_in": [
+      "article-1"
+    ],
+    "url": "https://doi.org/10.5664/jcsm.9860"
+  },
+  {
+    "id": "ref-ding-2025",
+    "authors": "Ding Y, Sun X, Yin J, et al.",
+    "year": 2025,
+    "title": "Impact of white noise on sleep quality across age groups and in critically ill/non-critically ill patients: A systematic review and meta-analysis of randomized controlled trials",
+    "journal": "Sleep Medicine",
+    "doi": "10.1016/j.sleep.2025.106869",
+    "used_in": [
+      "article-1"
+    ],
+    "url": "https://doi.org/10.1016/j.sleep.2025.106869"
+  },
+  {
+    "id": "ref-basner-2026",
+    "authors": "Basner M, Smith MG, Cordoza M, et al.",
+    "year": 2026,
+    "title": "Efficacy of pink noise and earplugs for mitigating the effects of intermittent environmental noise exposure on sleep",
+    "journal": "Sleep",
+    "doi": "10.1093/sleep/zsag001",
+    "used_in": [
+      "article-1"
+    ],
+    "url": "https://doi.org/10.1093/sleep/zsag001"
+  },
+  {
+    "id": "ref-vincens-2026",
+    "authors": "Vincens N, Nause A, Basner M, et al.",
+    "year": 2026,
+    "title": "Pink noise reduces impact of traffic noise on sleep and the blood metabolome: a cross-over pilot study",
+    "journal": "Communications Medicine",
+    "doi": "10.1038/s43856-026-01380-5",
+    "used_in": [
+      "article-1"
+    ],
+    "url": "https://doi.org/10.1038/s43856-026-01380-5"
+  },
+  {
+    "id": "ref-nigg-2024",
+    "authors": "Nigg JT, Bruton A, Kozlowski MB, Johnstone JM, Karalunas SL",
+    "year": 2024,
+    "title": "Systematic Review and Meta-Analysis: Do White Noise or Pink Noise Help With Task Performance in Youth With Attention-Deficit/Hyperactivity Disorder or With Elevated Attention Problems?",
+    "journal": "Journal of the American Academy of Child & Adolescent Psychiatry",
+    "doi": "10.1016/j.jaac.2023.12.014",
+    "used_in": [
+      "article-1",
+      "article-2"
+    ],
+    "url": "https://doi.org/10.1016/j.jaac.2023.12.014"
+  },
+  {
+    "id": "ref-angwin-2017",
+    "authors": "Angwin AJ, Wilson WJ, Arnott WL, et al.",
+    "year": 2017,
+    "title": "White noise enhances new-word learning in healthy adults",
+    "journal": "Scientific Reports",
+    "doi": "10.1038/s41598-017-13383-3",
+    "used_in": [
+      "article-1"
+    ],
+    "url": "https://doi.org/10.1038/s41598-017-13383-3"
+  },
+  {
+    "id": "ref-awada-2022",
+    "authors": "Awada M, Becerik-Gerber B, Lucas G, Roll S",
+    "year": 2022,
+    "title": "Cognitive performance, creativity and stress levels of neurotypical young adults under different white noise levels",
+    "journal": "Scientific Reports",
+    "doi": "10.1038/s41598-022-18862-w",
+    "used_in": [
+      "article-1",
+      "article-2"
+    ],
+    "url": "https://doi.org/10.1038/s41598-022-18862-w"
+  },
+  {
+    "id": "ref-lu-2020",
+    "authors": "Lu S-Y, Huang Y-H, Lin K-Y",
+    "year": 2020,
+    "title": "Spectral content (colour) of noise exposure affects work efficiency",
+    "journal": "Noise & Health",
+    "doi": "10.4103/nah.NAH_61_18",
+    "used_in": [
+      "article-1-reference-list"
+    ],
+    "url": "https://doi.org/10.4103/nah.NAH_61_18"
+  },
+  {
+    "id": "ref-erfanian-2025",
+    "authors": "Erfanian M, Chait M, Kang J",
+    "year": 2025,
+    "title": "Pupil-linked arousal does not differ between ‘white’, ‘pink’ and ‘brown’ noises",
+    "journal": "International Journal of Psychophysiology",
+    "doi": "10.1016/j.ijpsycho.2025.113271",
+    "used_in": [
+      "article-1",
+      "article-2"
+    ],
+    "url": "https://doi.org/10.1016/j.ijpsycho.2025.113271"
+  },
+  {
+    "id": "ref-hong-2021",
+    "authors": "Hong SA, Kuziez D, Das N, Harris D, Brunworth JD",
+    "year": 2021,
+    "title": "Hazardous sound outputs of white noise devices intended for infants",
+    "journal": "International Journal of Pediatric Otorhinolaryngology",
+    "doi": "10.1016/j.ijporl.2021.110757",
+    "used_in": [
+      "article-1"
+    ],
+    "url": "https://doi.org/10.1016/j.ijporl.2021.110757"
+  },
+  {
+    "id": "ref-cheah-2022",
+    "authors": "Cheah Y, Wong HK, Spitzer M, Coutinho E",
+    "year": 2022,
+    "title": "Background Music and Cognitive Task Performance: A Systematic Review of Task, Music, and Population Impact",
+    "journal": "Music & Science",
+    "doi": "10.1177/20592043221134392",
+    "used_in": [
+      "article-2",
+      "article-3"
+    ],
+    "url": "https://doi.org/10.1177/20592043221134392"
+  },
+  {
+    "id": "ref-dela-mora-2020",
+    "authors": "de la Mora Velasco E, Hirumi A",
+    "year": 2020,
+    "title": "The effects of background music on learning: a systematic review of literature to guide future research and practice",
+    "journal": "Educational Technology Research and Development",
+    "doi": "10.1007/s11423-020-09783-4",
+    "used_in": [
+      "article-2"
+    ],
+    "url": "https://doi.org/10.1007/s11423-020-09783-4"
+  },
+  {
+    "id": "ref-dela-mora-2023",
+    "authors": "de la Mora Velasco E, Chen Y, Hirumi A, Bai H",
+    "year": 2023,
+    "title": "The impact of background music on learners: A systematic review and meta-analysis",
+    "journal": "Psychology of Music",
+    "doi": "10.1177/03057356231153070",
+    "used_in": [
+      "article-2",
+      "article-3"
+    ],
+    "url": "https://doi.org/10.1177/03057356231153070"
+  },
+  {
+    "id": "ref-kirk-2022",
+    "authors": "Kirk U, Ngnoumen C, Clausel A, Purvis CK",
+    "year": 2022,
+    "title": "Effects of Three Genres of Focus Music on Heart Rate Variability and Sustained Attention",
+    "journal": "Journal of Cognitive Enhancement",
+    "doi": "10.1007/s41465-021-00226-3",
+    "used_in": [
+      "article-2",
+      "article-3"
+    ],
+    "url": "https://doi.org/10.1007/s41465-021-00226-3"
+  },
+  {
+    "id": "ref-dsouza-2024",
+    "authors": "Dsouza MP, Shetty A, TS S, et al.",
+    "year": 2024,
+    "title": "‘I would want to listen to it as a medicine’ – Lo-fi music and state anxiety, a mixed-methods pilot study on young adults",
+    "journal": "International Journal of Adolescence and Youth",
+    "doi": "10.1080/02673843.2024.2388787",
+    "used_in": [
+      "article-2",
+      "article-3"
+    ],
+    "url": "https://doi.org/10.1080/02673843.2024.2388787"
+  },
+  {
+    "id": "ref-homann-2023",
+    "authors": "Homann LA, Drody AC, Smilek D",
+    "year": 2023,
+    "title": "The effects of self-selected background music and task difficulty on task engagement and performance in a visual vigilance task",
+    "journal": "Psychological Research",
+    "doi": "10.1007/s00426-023-01836-6",
+    "used_in": [
+      "article-2",
+      "article-3"
+    ],
+    "url": "https://doi.org/10.1007/s00426-023-01836-6"
+  },
+  {
+    "id": "ref-buxton-2021",
+    "authors": "Buxton RT, Pearson AL, Allou C, Fristrup K, Wittemyer G",
+    "year": 2021,
+    "title": "A synthesis of health benefits of natural sounds and their distribution in national parks",
+    "journal": "Proceedings of the National Academy of Sciences",
+    "doi": "10.1073/pnas.2013097118",
+    "used_in": [
+      "article-2"
+    ],
+    "url": "https://doi.org/10.1073/pnas.2013097118"
+  },
+  {
+    "id": "ref-song-2023",
+    "authors": "Song I, Baek K, Kim C, Song C",
+    "year": 2023,
+    "title": "Effects of nature sounds on the attention and physiological and psychological relaxation",
+    "journal": "Urban Forestry & Urban Greening",
+    "doi": "10.1016/j.ufug.2023.127987",
+    "used_in": [
+      "article-2"
+    ],
+    "url": "https://doi.org/10.1016/j.ufug.2023.127987"
+  },
+  {
+    "id": "ref-van-hedger-2019",
+    "authors": "Van Hedger SC, Nusbaum HC, Clohisy L, Jaeggi SM, Buschkuehl M, Berman MG",
+    "year": 2019,
+    "title": "Of cricket chirps and car horns: The effect of nature sounds on cognitive performance",
+    "journal": "Psychonomic Bulletin & Review",
+    "doi": "10.3758/s13423-018-1539-1",
+    "used_in": [
+      "article-2"
+    ],
+    "url": "https://doi.org/10.3758/s13423-018-1539-1"
+  },
+  {
+    "id": "ref-luo-2022",
+    "authors": "Luo J, Wang M, Chen L",
+    "year": 2022,
+    "title": "Exposure to Nature Sounds through a Mobile Application in Daily Life: Effects on Learning Performance among University Students",
+    "journal": "International Journal of Environmental Research and Public Health",
+    "doi": "10.3390/ijerph192114583",
+    "used_in": [
+      "article-2"
+    ],
+    "url": "https://doi.org/10.3390/ijerph192114583"
+  },
+  {
+    "id": "ref-jo-2019",
+    "authors": "Jo H, Song C, Ikei H, Enomoto S, Kobayashi H, Miyazaki Y",
+    "year": 2019,
+    "title": "Physiological and Psychological Effects of Forest and Urban Sounds Using High-Resolution Sound Sources",
+    "journal": "International Journal of Environmental Research and Public Health",
+    "doi": "10.3390/ijerph16152649",
+    "used_in": [
+      "article-2"
+    ],
+    "url": "https://doi.org/10.3390/ijerph16152649"
+  },
+  {
+    "id": "ref-berti-2013",
+    "authors": "Berti S",
+    "year": 2013,
+    "title": "The role of auditory transient and deviance processing in distraction of task performance: a combined behavioral and event-related brain potential study",
+    "journal": "Frontiers in Human Neuroscience",
+    "doi": "10.3389/fnhum.2013.00352",
+    "used_in": [
+      "article-2"
+    ],
+    "url": "https://doi.org/10.3389/fnhum.2013.00352"
+  },
+  {
+    "id": "ref-foldal-2020",
+    "authors": "Foldal MD, Blenkmann AO, Llorens A, et al.",
+    "year": 2020,
+    "title": "The brain tracks auditory rhythm predictability independent of selective attention",
+    "journal": "Scientific Reports",
+    "doi": "10.1038/s41598-020-64758-y",
+    "used_in": [
+      "article-2"
+    ],
+    "url": "https://doi.org/10.1038/s41598-020-64758-y"
+  },
+  {
+    "id": "ref-cheah-2025",
+    "authors": "Cheah Y, et al.",
+    "year": 2025,
+    "title": "Help me study! Music listening habits while studying",
+    "journal": "Psychology of Music",
+    "doi": "10.1177/03057356251351778",
+    "used_in": [
+      "article-3"
+    ],
+    "url": "https://doi.org/10.1177/03057356251351778"
+  },
+  {
+    "id": "ref-hofbauer-2024",
+    "authors": "Hofbauer LM, Lachmann T, Rodriguez FS",
+    "year": 2024,
+    "title": "Background music varying in tempo and emotional valence differentially affects cognitive task performance: experimental within-participant comparison",
+    "journal": "Journal of Cultural Cognitive Science",
+    "doi": "10.1007/s41809-024-00144-8",
+    "used_in": [
+      "article-3"
+    ],
+    "url": "https://doi.org/10.1007/s41809-024-00144-8"
+  },
+  {
+    "id": "ref-echaide-2019",
+    "authors": "Echaide C, del Río D, Pacios J",
+    "year": 2019,
+    "title": "The differential effect of background music on memory for verbal and visuospatial information",
+    "journal": "The Journal of General Psychology",
+    "doi": "10.1080/00221309.2019.1602023",
+    "used_in": [
+      "article-3"
+    ],
+    "url": "https://doi.org/10.1080/00221309.2019.1602023"
+  }
+]

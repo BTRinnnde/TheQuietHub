@@ -1,0 +1,59 @@
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', Arial, sans-serif;
+    background: #000000;
+}
+
+@font-face {
+    font-family: 'Poppins';
+    src: url('fonts/Poppins-ExtraBold.woff2') format('woff2'),
+         url('fonts/Poppins-ExtraBold.ttf') format('truetype');
+    font-weight: 800;
+    font-style: normal;
+    font-display: swap;
+}
+
+.error-page {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: radial-gradient(
+        ellipse 135% 135% at 20% 40%,
+        #000000 0%,
+        #000000 25%,
+        #004080 55%,
+        #0066cc 100%
+    );
+    color: white;
+}
+
+.error-page h1 {
+    font-size: 6rem;
+    margin: 0;
+}
+
+.error-page h2 {
+    font-size: 2rem;
+    margin: 1rem 0;
+}
+
+.error-page a {
+    color: #45b6fe;
+    text-decoration: none;
+    margin-top: 2rem;
+    font-size: 1.2rem;
+}
+
+.error-page a:hover {
+    text-decoration: underline;
+}
