@@ -1,7 +1,0 @@
-canvas {
-	position: absolute;
-	top: calc(50% - 200px);
-	left: calc(50% - 200px);
-}
-
-/* Remove all other styles including body background */
