@@ -744,6 +744,25 @@ button.arrow-container:focus-visible {
     border: 0;
 }
 
+.skip-to-music:focus {
+    position: fixed;
+    top: 12px;
+    left: 12px;
+    z-index: 100;
+    width: auto;
+    height: auto;
+    margin: 0;
+    padding: 0.6rem 1rem;
+    clip: auto;
+    overflow: visible;
+    color: #fff;
+    background: #000;
+    border-radius: 6px;
+    text-decoration: none;
+    outline: 2px solid #45b6fe;
+    outline-offset: 2px;
+}
+
 /* ==========================================================================
    8. Responsive Design
    ========================================================================== */
@@ -942,7 +961,7 @@ button.arrow-container:focus-visible {
     }
 }
 
-#playlists {
+#music {
     scroll-margin-top: 0;
 }
 

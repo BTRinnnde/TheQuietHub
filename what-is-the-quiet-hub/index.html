@@ -7,20 +7,25 @@
         content="Learn how The Quiet Hub organizes curated music, original soundscapes and ambient audio for studying, working, sleeping and quieter moments.">
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
     <meta name="theme-color" content="#f4f5f7">
-    <meta name="color-scheme" content="light">
+    <meta name="color-scheme" content="light dark">
     <link rel="canonical" href="https://thequiethub.com/what-is-the-quiet-hub/">
     <meta property="og:title" content="What Is The Quiet Hub? Background Audio for Focus & Rest">
     <meta property="og:description"
         content="Learn how The Quiet Hub organizes curated music, original soundscapes and ambient audio for studying, working, sleeping and quieter moments.">
     <meta property="og:image" content="https://thequiethub.com/images/og-preview.jpg">
+    <meta property="og:image:alt" content="The Quiet Hub — background audio for focus and rest">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
     <meta property="og:url" content="https://thequiethub.com/what-is-the-quiet-hub/">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="The Quiet Hub">
+    <meta property="og:locale" content="en_US">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="What Is The Quiet Hub? Background Audio for Focus & Rest">
     <meta name="twitter:description"
         content="Learn how The Quiet Hub organizes curated music, original soundscapes and ambient audio for studying, working, sleeping and quieter moments.">
     <meta name="twitter:image" content="https://thequiethub.com/images/og-preview.jpg">
+    <meta name="twitter:image:alt" content="The Quiet Hub — background audio for focus and rest">
     <link rel="icon" type="image/png" href="../my-favicon/favicon-96x96.png" sizes="96x96">
     <link rel="icon" type="image/svg+xml" href="../my-favicon/favicon.svg">
     <link rel="shortcut icon" href="../my-favicon/favicon.ico">
@@ -35,6 +40,7 @@
         plausible.init()
     </script>
     <link rel="preload" href="../fonts/Poppins-ExtraBold.woff2" as="font" type="font/woff2" crossorigin>
+    <script src="../js/content-theme.js"></script>
     <link rel="stylesheet" href="../css/site-content.css">
     <script type="application/ld+json">
     {
@@ -47,11 +53,18 @@
       "isPartOf": {
         "@type": "WebSite",
         "name": "The Quiet Hub",
-        "url": "https://thequiethub.com"
+        "url": "https://thequiethub.com/"
       },
       "publisher": {
         "@type": "Organization",
-        "name": "The Quiet Hub"
+        "name": "The Quiet Hub",
+        "url": "https://thequiethub.com/",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://thequiethub.com/my-favicon/web-app-manifest-512x512.png",
+          "width": 512,
+          "height": 512
+        }
       }
     }
     </script>
@@ -80,9 +93,9 @@
     <a class="skip-link" href="#main">Skip to content</a>
     <div class="site-page">
         <header class="site-header">
-            <a class="site-header__brand" href="/#playlists">The Quiet Hub</a>
+            <a class="site-header__brand" href="/music/">The Quiet Hub</a>
             <nav class="site-nav" aria-label="Primary">
-                <a href="/#playlists">Home</a>
+                <a href="/music/">Home</a>
                 <a href="/what-is-the-quiet-hub/" aria-current="page">What is The Quiet Hub?</a>
                 <a href="/articles/">Articles</a>
             </nav>
@@ -90,7 +103,7 @@
 
         <nav class="breadcrumbs" aria-label="Breadcrumb">
             <ol>
-                <li><a href="/#playlists">Home</a></li>
+                <li><a href="/music/">Home</a></li>
                 <li aria-current="page">What is The Quiet Hub?</li>
             </ol>
         </nav>
@@ -236,7 +249,7 @@
         </main>
 
         <footer class="site-footer">
-            <a href="/#playlists">Home</a>
+            <a href="/music/">Home</a>
             <a href="/what-is-the-quiet-hub/" aria-current="page">What is The Quiet Hub?</a>
             <a href="/articles/">Articles</a>
         </footer>

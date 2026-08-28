@@ -472,42 +472,96 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // ========== Initialization ==========
-    // Deep-link: /#playlists jumps straight to the playlist grid
-    const playlistsSection = document.getElementById('playlists');
-    const scrollToPlaylists = (smooth) => {
-        if (!playlistsSection) return;
-        const reduce =
-            window.matchMedia &&
-            window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        playlistsSection.scrollIntoView({
-            behavior: smooth && !reduce ? 'smooth' : 'auto',
-            block: 'start'
-        });
+    // The playlist panel is 107.5vh with a 7.5vh peek, so the document is 200vh.
+    // Native #anchor scroll only reaches the panel start (~92.5vh). The intended
+    // music view is maximum scroll, which lifts the hero as far as the layout allows.
+    const MUSIC_PATH = '/music/';
+    const MUSIC_HASHES = new Set(['#playlists', '#music', '#music-content']);
+    const htmlEl = document.documentElement;
+    const prefersReducedMotion = () =>
+        window.matchMedia &&
+        window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    const getMaxScroll = () =>
+        Math.max(0, htmlEl.scrollHeight - window.innerHeight);
+
+    const pathnameIsMusic = () => {
+        const path = (location.pathname || '/').replace(/\/+$/, '') || '/';
+        return path === '/music';
     };
 
-    if (location.hash === '#playlists') {
-        scrollToPlaylists(false);
-        requestAnimationFrame(() => scrollToPlaylists(false));
-        window.setTimeout(() => scrollToPlaylists(false), 50);
+    const consumeMusicFlag = () => {
+        try {
+            if (sessionStorage.getItem('tqhMusicView') === '1') {
+                sessionStorage.removeItem('tqhMusicView');
+                return true;
+            }
+        } catch (e) { /* private mode */ }
+        return false;
+    };
+
+    const setMusicUrl = (on) => {
+        const next = on ? MUSIC_PATH : '/';
+        const currentPath = location.pathname.endsWith('/') || location.pathname === ''
+            ? (location.pathname || '/')
+            : location.pathname + '/';
+        if (currentPath === next && !location.hash && !location.search) return;
+        try {
+            history.replaceState(null, '', next);
+        } catch (e) { /* ignore */ }
+    };
+
+    const scrollToMusicView = (smooth) => {
+        const reduce = prefersReducedMotion();
+        const top = getMaxScroll();
+        const previousBehavior = htmlEl.style.scrollBehavior;
+        if (!smooth || reduce) {
+            htmlEl.style.scrollBehavior = 'auto';
+            window.scrollTo(0, top);
+            htmlEl.style.scrollBehavior = previousBehavior;
+            return;
+        }
+        window.scrollTo({ top, behavior: 'smooth' });
+    };
+
+    const openMusicView = (smooth, updateUrl) => {
+        if (history.scrollRestoration) {
+            history.scrollRestoration = 'manual';
+        }
+        if (updateUrl !== false) setMusicUrl(true);
+        scrollToMusicView(smooth);
+    };
+
+    const arrivedViaStub = consumeMusicFlag();
+    const shouldOpenMusic =
+        pathnameIsMusic() || MUSIC_HASHES.has(location.hash) || arrivedViaStub;
+
+    if (shouldOpenMusic) {
+        // Keep /#playlists working, but prefer /music/. The music/index.html stub
+        // already sent us to /, so leave that URL alone to avoid a refresh flash.
+        openMusicView(false, !arrivedViaStub);
+        requestAnimationFrame(() => scrollToMusicView(false));
+        window.setTimeout(() => scrollToMusicView(false), 50);
+        window.setTimeout(() => scrollToMusicView(false), 250);
+        window.addEventListener('load', () => scrollToMusicView(false), { once: true });
     }
 
     window.addEventListener('hashchange', () => {
-        if (location.hash === '#playlists') scrollToPlaylists(true);
+        if (MUSIC_HASHES.has(location.hash)) openMusicView(true);
     });
-
-    // Scroll arrows on bottom section — visibility is natural via scroll
-    const getMaxScroll = () =>
-        Math.max(0, document.documentElement.scrollHeight - window.innerHeight);
 
     document.querySelectorAll('.scroll-up-arrow').forEach((arrow) => {
         arrow.addEventListener('click', () => {
-            window.scrollTo({ top: getMaxScroll(), behavior: 'smooth' });
+            setMusicUrl(true);
+            scrollToMusicView(true);
         });
     });
 
     document.querySelectorAll('.scroll-down-arrow').forEach((arrow) => {
         arrow.addEventListener('click', () => {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+            setMusicUrl(false);
+            const reduce = prefersReducedMotion();
+            window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' });
         });
     });
 

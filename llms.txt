@@ -1,0 +1,31 @@
+# The Quiet Hub
+
+> Calming background music, ambient noise and natural sounds for studying, focusing, working, sleeping and meditating.
+
+The Quiet Hub is a small library of background audio. Music playlists are curated from independent artists. Nature and noise collections are original recordings. Listening happens on Spotify, Apple Music or YouTube Music.
+
+## Site
+
+- [Home](https://thequiethub.com/): landing and playlist collection
+- [Music](https://thequiethub.com/music/): playlist collection (same homepage, scrolled to the grid)
+- [What is The Quiet Hub?](https://thequiethub.com/what-is-the-quiet-hub/)
+- [Articles](https://thequiethub.com/articles/): Research-led guides to background sound
+
+## Playlists
+
+- [Peaceful Piano](https://thequiethub.com/playlists/peaceful-piano/)
+- [Elegant Jazz](https://thequiethub.com/playlists/elegant-jazz/)
+- [Lofi Dreams](https://thequiethub.com/playlists/lofi-dreams/)
+- [White Noise](https://thequiethub.com/playlists/white-noise/)
+- [Brown Noise](https://thequiethub.com/playlists/brown-noise/)
+- [Pink Noise](https://thequiethub.com/playlists/pink-noise/)
+- [Forest Sounds](https://thequiethub.com/playlists/forest-sounds/)
+- [Creek Sounds](https://thequiethub.com/playlists/creek-sounds/)
+- [Rain Sounds](https://thequiethub.com/playlists/rain-sounds/)
+- [Thunder Sounds](https://thequiethub.com/playlists/thunder-sounds/)
+
+## Articles
+
+- [White Noise vs Pink Noise vs Brown Noise](https://thequiethub.com/articles/white-noise-vs-pink-noise-vs-brown-noise/)
+- [The Best Background Sounds for Studying](https://thequiethub.com/articles/best-background-sounds-for-studying/)
+- [Does Music Help You Study?](https://thequiethub.com/articles/does-music-help-you-study/)

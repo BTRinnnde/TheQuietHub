@@ -4,35 +4,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <base href="/">
     <meta name="description"
         content="The Quiet Hub brings calming background music, ambient noise and natural sounds together in one place. Explore Peaceful Piano, Elegant Jazz, Lofi Dreams, white, brown and pink noise, plus forest, creek, rain and thunder sounds for study, focus, sleep and relaxation.">
-    <meta property="og:title" content="The Quiet Hub - Focus Music, Study Music and Ambient Sounds">
+    <meta property="og:title" content="The Quiet Hub | Focus Music, Study Music and Ambient Sounds">
     <meta property="og:description"
         content="Calming background music, ambient noise and natural sounds for studying, focusing, working, sleeping and meditating.">
     <meta property="og:image" content="https://thequiethub.com/images/og-preview.jpg">
-    <meta property="og:url" content="https://thequiethub.com">
+    <meta property="og:image:alt" content="The Quiet Hub — focus music, study music and ambient sounds">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:url" content="https://thequiethub.com/">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="The Quiet Hub">
+    <meta property="og:locale" content="en_US">
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
     <meta name="theme-color" content="#000000">
     <meta name="color-scheme" content="dark">
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="The Quiet Hub - Your Space for Focus, Study & Relaxation">
+    <meta name="twitter:title" content="The Quiet Hub | Focus Music, Study Music and Ambient Sounds">
     <meta name="twitter:description"
         content="Calming background music, ambient noise and natural sounds for studying, focusing, working, sleeping and meditating.">
     <meta name="twitter:image" content="https://thequiethub.com/images/og-preview.jpg">
+    <meta name="twitter:image:alt" content="The Quiet Hub — focus music, study music and ambient sounds">
     <!-- Canonical URL -->
     <link rel="canonical" href="https://thequiethub.com/">
     <!-- Favicon -->
-    <link rel="icon" type="image/png" href="my-favicon/favicon-96x96.png" sizes="96x96" />
-    <link rel="icon" type="image/svg+xml" href="my-favicon/favicon.svg" />
-    <link rel="shortcut icon" href="my-favicon/favicon.ico" />
-    <link rel="apple-touch-icon" sizes="180x180" href="my-favicon/apple-touch-icon.png" />
-    <meta name="apple-mobile-web-app-title" content="Quiet" />
-    <link rel="manifest" href="my-favicon/site.webmanifest" />
-    <title>The Quiet Hub - Focus Music, Study Music & Ambient Sounds | Peaceful Piano, Jazz, Lofi & Nature Sounds
-    </title>
+    <link rel="icon" type="image/png" href="/my-favicon/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/my-favicon/favicon.svg" />
+    <link rel="shortcut icon" href="/my-favicon/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/my-favicon/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-title" content="The Quiet Hub" />
+    <link rel="manifest" href="/my-favicon/site.webmanifest" />
+    <title>The Quiet Hub | Focus Music, Study Music &amp; Ambient Sounds</title>
+    <link rel="preconnect" href="https://plausible.io" crossorigin>
+    <link rel="dns-prefetch" href="https://static.cloudflareinsights.com">
     <!-- Privacy-friendly analytics by Plausible -->
     <script async src="https://plausible.io/js/pa-4RAl4Dje43DX1PwPN3iv5.js"></script>
     <script>
@@ -40,12 +47,13 @@
         plausible.init()
     </script>
     <!-- Preload critical resources -->
-    <link rel="preload" href="fonts/Poppins-ExtraBold.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="preload" href="styles.css" as="style">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="preload" href="/fonts/Poppins-ExtraBold.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/styles.css" as="style">
+    <link rel="stylesheet" href="/styles.css">
 </head>
 
 <body>
+    <a class="visually-hidden skip-to-music" href="/music/">Skip to playlists</a>
     <main class="page-wrapper">
         <section class="top-section" aria-label="Hero section">
             <div id="globe-wrapper">
@@ -72,7 +80,7 @@
             </h1>
         </section>
 
-        <section class="bottom-section" id="playlists">
+        <section class="bottom-section" id="music">
             <div class="arrow-controls">
                 <button type="button" class="arrow-container scroll-up-arrow" id="scrollUpArrow"
                     aria-label="Show playlists">
@@ -138,6 +146,20 @@
                 <a class="info-link" href="/what-is-the-quiet-hub/">What is The Quiet Hub?</a>
                 <a class="articles-home-link" href="/articles/">Articles</a>
             </nav>
+            <noscript>
+                <nav aria-label="Playlists">
+                    <a href="/playlists/peaceful-piano/">Peaceful Piano</a>
+                    <a href="/playlists/elegant-jazz/">Elegant Jazz</a>
+                    <a href="/playlists/lofi-dreams/">Lofi Dreams</a>
+                    <a href="/playlists/white-noise/">White Noise</a>
+                    <a href="/playlists/brown-noise/">Brown Noise</a>
+                    <a href="/playlists/pink-noise/">Pink Noise</a>
+                    <a href="/playlists/forest-sounds/">Forest Sounds</a>
+                    <a href="/playlists/creek-sounds/">Creek Sounds</a>
+                    <a href="/playlists/rain-sounds/">Rain Sounds</a>
+                    <a href="/playlists/thunder-sounds/">Thunder Sounds</a>
+                </nav>
+            </noscript>
         </section>
     </main>
 
@@ -221,11 +243,18 @@
       "name": "The Quiet Hub",
       "alternateName": "Quiet",
       "description": "A home for calming background music, ambient noise and natural sounds for studying, focusing, working, sleeping and meditating.",
-      "url": "https://thequiethub.com",
+      "url": "https://thequiethub.com/",
       "inLanguage": "en",
       "publisher": {
         "@type": "Organization",
-        "name": "The Quiet Hub"
+        "name": "The Quiet Hub",
+        "url": "https://thequiethub.com/",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://thequiethub.com/my-favicon/web-app-manifest-512x512.png",
+          "width": 512,
+          "height": 512
+        }
       }
     }
     </script>
@@ -235,8 +264,20 @@
       "@type": "CollectionPage",
       "name": "The Quiet Hub - Music Playlists",
       "description": "Curated playlists for focus, study, and relaxation including peaceful piano, elegant jazz, lofi dreams, ambient noise, and nature sounds",
-      "url": "https://thequiethub.com",
+      "url": "https://thequiethub.com/",
       "inLanguage": "en",
+      "image": "https://thequiethub.com/images/og-preview.jpg",
+      "publisher": {
+        "@type": "Organization",
+        "name": "The Quiet Hub",
+        "url": "https://thequiethub.com/",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://thequiethub.com/my-favicon/web-app-manifest-512x512.png",
+          "width": 512,
+          "height": 512
+        }
+      },
       "mainEntity": {
         "@type": "ItemList",
         "numberOfItems": 10,
@@ -356,8 +397,8 @@
     }
     </script>
 
-    <script src="script.js" defer></script>
-    <script src="globe-animation/globe.js" defer></script>
+    <script src="/script.js" defer></script>
+    <script src="/globe-animation/globe.js" defer></script>
     <!-- Cloudflare Web Analytics -->
     <script type='module' src='https://static.cloudflareinsights.com/beacon.min.js'
         data-cf-beacon='{"token": "c5f38e453277427b84c1f6ceb39c7653"}'></script><!-- End Cloudflare Web Analytics -->

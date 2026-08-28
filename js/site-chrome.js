@@ -10,8 +10,9 @@
     if (!body) return;
 
     var isLightTheme =
-        body.classList.contains('articles-theme') ||
-        body.classList.contains('content-theme');
+        (body.classList.contains('articles-theme') ||
+            body.classList.contains('content-theme')) &&
+        document.documentElement.getAttribute('data-content-theme') !== 'dark';
 
     var articleBody = document.querySelector('.article-body');
     var articleMain = document.querySelector('main.article');
