@@ -47,16 +47,29 @@ body {
 
 .playlist-page__back {
     position: absolute;
-    top: 2rem;
-    left: 2rem;
-    color: rgba(255, 255, 255, 0.8);
+    top: 1.75rem;
+    left: 1.75rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.75rem;
+    height: 2.75rem;
+    color: rgba(255, 255, 255, 0.85);
     text-decoration: none;
-    font-size: 0.95rem;
-    transition: color 0.2s ease;
+    font-size: 1.85rem;
+    line-height: 1;
+    border-radius: 999px;
+    transition: color 0.2s ease, background 0.2s ease;
 }
 
 .playlist-page__back:hover {
     color: #45b6fe;
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.playlist-page__back:focus-visible {
+    outline: 2px solid #45b6fe;
+    outline-offset: 3px;
 }
 
 .playlist-page__cover {
@@ -127,9 +140,11 @@ body {
     }
 
     .playlist-page__back {
-        top: 1.5rem;
-        left: 1.5rem;
-        font-size: 0.85rem;
+        top: 1.15rem;
+        left: 1.15rem;
+        width: 2.5rem;
+        height: 2.5rem;
+        font-size: 1.65rem;
     }
 
     .playlist-page__cover {

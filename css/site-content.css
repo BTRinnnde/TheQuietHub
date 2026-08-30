@@ -284,6 +284,15 @@ body {
     color: rgba(255, 255, 255, 0.9);
 }
 
+.content-card strong {
+    font-weight: inherit;
+}
+
+.content-card a strong,
+.content-card strong a {
+    font-weight: 700;
+}
+
 .content-card p:last-child {
     margin-bottom: 0;
 }
@@ -463,8 +472,20 @@ body {
 }
 
 .article-body strong {
-    color: #ffffff;
+    color: inherit;
+    font-weight: inherit;
+}
+
+/* Bold only when the strong text is (or wraps) a real link */
+.article-body a strong,
+.article-body strong a {
+    color: inherit;
     font-weight: 700;
+}
+
+.article-body .playlist-selector__card strong {
+    color: #ffffff;
+    font-weight: 800;
 }
 
 .article-body .cite {
@@ -1092,6 +1113,7 @@ details.expandable[open] summary {
 .self-test__prompt strong {
     display: block;
     font-family: 'Poppins', Arial, sans-serif;
+    font-weight: inherit;
     color: #45b6fe;
 }
 
@@ -1449,7 +1471,20 @@ body.articles-theme .article-body li {
 }
 
 body.articles-theme .article-body strong {
+    color: inherit;
+    font-weight: inherit;
+}
+
+body.articles-theme .article-body a strong,
+body.articles-theme .article-body strong a {
+    color: var(--aq-accent);
+    font-weight: 700;
+}
+
+/* Playlist card titles stay ink; only the cue/link chrome uses accent */
+body.articles-theme .article-body .playlist-selector__card strong {
     color: var(--aq-ink);
+    font-weight: 800;
 }
 
 body.articles-theme .article-body a {
@@ -1662,6 +1697,7 @@ body.articles-theme .self-test__prompt {
 
 body.articles-theme .self-test__prompt strong {
     color: var(--aq-accent);
+    font-weight: inherit;
 }
 
 body.articles-theme .article-table th,
@@ -1940,6 +1976,16 @@ body.articles-theme .content-card h3 {
 
 body.articles-theme .content-card p {
     color: var(--aq-ink-soft);
+}
+
+body.articles-theme .content-card strong {
+    font-weight: inherit;
+}
+
+body.articles-theme .content-card a strong,
+body.articles-theme .content-card strong a {
+    font-weight: 700;
+    color: var(--aq-accent);
 }
 
 body.articles-theme .brand-playlist-groups {
