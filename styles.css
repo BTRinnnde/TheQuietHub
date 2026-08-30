@@ -343,7 +343,9 @@ body {
     place-content: center;
 }
 
-/* Element Modal */
+/* Element Modal — large screens keep the original cover / link placement.
+   Phones use a compact cover cluster so browser chrome cannot overlap,
+   with platform icons pinned separately so the gap stays a dismiss hit-target. */
 .element-modal {
     display: none;
     position: fixed;
@@ -378,6 +380,19 @@ body {
     padding-top: 0;
 }
 
+.element-modal-cover {
+    width: 302px;
+    height: 302px;
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+.element-modal-cover .element,
+.element-modal-cover .modal-element {
+    width: 100%;
+    height: 100%;
+}
+
 .scaled-element-label {
     color: #FFFFFF;
     font-size: 2.2rem;
@@ -407,6 +422,91 @@ body {
 
 .platform-icon:hover {
     transform: scale(1.1);
+}
+
+.element-modal-dismiss {
+    display: none;
+}
+
+@media screen and (max-width: 768px) {
+    .element-modal {
+        height: 100dvh;
+        height: var(--app-height, 100dvh);
+        max-height: 100dvh;
+        max-height: var(--app-height, 100dvh);
+        padding: max(0.75rem, env(safe-area-inset-top)) 1rem max(0.75rem, env(safe-area-inset-bottom));
+        box-sizing: border-box;
+        overflow: hidden;
+    }
+
+    .element-modal.show {
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+    }
+
+    .element-modal-content {
+        width: min(302px, 78vw);
+        height: auto;
+        margin: 0;
+        flex: 0 0 auto;
+        flex-direction: column;
+        gap: 0.7rem;
+        padding-top: clamp(1.25rem, 6dvh, 3.5rem);
+    }
+
+    .element-modal-cover {
+        width: min(302px, 78vw, calc(var(--app-height, 100dvh) - 14rem));
+        height: min(302px, 78vw, calc(var(--app-height, 100dvh) - 14rem));
+        flex: 0 0 auto;
+    }
+
+    .scaled-element-label {
+        position: static;
+        top: auto;
+        left: auto;
+        transform: none;
+        white-space: normal;
+        max-width: 100%;
+        line-height: 1.15;
+        font-size: clamp(1.35rem, 5.5vw, 2.2rem);
+    }
+
+    .element-modal-learn-more {
+        position: static;
+        top: auto;
+        left: auto;
+        transform: none;
+    }
+
+    .platform-icons {
+        bottom: max(
+            1.25rem,
+            env(safe-area-inset-bottom, 0px),
+            calc((var(--app-height, 100dvh) - 43dvh - min(302px, 78vw)) / 2)
+        );
+        gap: clamp(1.25rem, 5vw, 2rem);
+        z-index: 1;
+    }
+
+    .element-modal-dismiss {
+        display: block;
+        flex: 1 1 auto;
+        align-self: stretch;
+        width: 100%;
+        min-height: 1.5rem;
+    }
+}
+
+@media screen and (max-width: 768px) and (max-height: 620px) {
+    .platform-icon {
+        width: 48px;
+        height: 48px;
+    }
+
+    .scaled-element-label {
+        font-size: clamp(1.2rem, 5vw, 1.7rem);
+    }
 }
 
 /* Modal Backdrop Levels */
@@ -825,10 +925,6 @@ button.arrow-container:focus-visible {
         padding-top: 18.5vh;
     }
 
-    .element-modal {
-        padding-top: 18.5vh;
-    }
-
     .modal-content {
         width: 311px;
         height: 311px;
@@ -963,5 +1059,108 @@ button.arrow-container:focus-visible {
 
 #music {
     scroll-margin-top: 0;
+}
+
+/* ==========================================================================
+   Large desktops (≈32" and similar) — music panel feels closer to 133% zoom
+   - Wide + tall enough windows: kicks in earlier than near-full 32" width
+   - Tall split-screen: side-by-side halves on large monitors (short width,
+     still tall) also qualify
+   Typical 14"/1080p laptop heights stay out, so those keep the original size.
+   ========================================================================== */
+@media screen and (min-width: 1600px) and (min-height: 1100px),
+       screen and (min-width: 1100px) and (min-height: 1200px) {
+    .wave-title h2 {
+        font-size: 8rem;
+    }
+
+    .elements-container {
+        gap: 4rem;
+    }
+
+    .element,
+    .modal-element {
+        width: 153px;
+        height: 153px;
+        border-radius: 20px;
+    }
+
+    .element-wrapper,
+    .modal-element-wrapper {
+        gap: 0.55rem;
+    }
+
+    .element-label,
+    .modal-element-label {
+        font-size: 1.2rem;
+    }
+
+    .folder-grid {
+        gap: 8px;
+        padding: 16px;
+        border-radius: inherit;
+    }
+
+    .folder-grid-item {
+        border-radius: 16px;
+    }
+
+    .info-link {
+        font-size: 1.25rem;
+        padding: 0.45rem 1.2rem;
+    }
+
+    .articles-home-link {
+        font-size: 1.05rem;
+        padding: 0.2rem 0.9rem 0.45rem;
+    }
+
+    .home-footer-links {
+        gap: 0.35rem;
+    }
+
+    .arrow-controls {
+        width: 40px;
+    }
+
+    .arrow-container {
+        height: 40px;
+        width: 40px;
+    }
+
+    /* Folder / ambient grid modal stays proportional to the larger tiles */
+    .modal-content {
+        width: 400px;
+        height: 400px;
+        border-radius: 52px;
+        padding: 33px 27px 20px 27px;
+    }
+
+    .modal-grid {
+        grid-template-columns: repeat(2, 153px);
+        gap: 0.8rem 2.4rem;
+    }
+
+    /* Opened playlist overlay matches the larger music panel */
+    .element-modal-content,
+    .element-modal-cover {
+        width: 400px;
+        height: 400px;
+    }
+
+    .scaled-element-label {
+        font-size: 2.9rem;
+        top: -66px;
+    }
+
+    .platform-icons {
+        gap: 2.65rem;
+        bottom: calc((100vh - (43vh + 400px)) / 2);
+    }
+
+    .platform-icon {
+        width: 80px;
+        height: 80px;
+    }
 }
 

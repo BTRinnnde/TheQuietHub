@@ -166,17 +166,36 @@
 
         document.body.appendChild(btn);
 
+        var bottomChrome =
+            document.querySelector('.site-footer') ||
+            document.querySelector('.playlist-page__cta');
+
         var shown = false;
-        function update() {
+        function updateVisibility() {
             var shouldShow = window.scrollY > 420 && pageIsLongEnough();
             if (shouldShow === shown) return;
             shown = shouldShow;
             btn.classList.toggle('is-visible', shown);
         }
 
-        window.addEventListener('scroll', update, { passive: true });
-        window.addEventListener('resize', update);
-        update();
+        window.addEventListener('scroll', updateVisibility, { passive: true });
+        window.addEventListener('resize', updateVisibility);
+        updateVisibility();
+
+        if (bottomChrome && 'IntersectionObserver' in window) {
+            var liftObserver = new IntersectionObserver(function (entries) {
+                var entry = entries[0];
+                if (!entry || !entry.isIntersecting) {
+                    btn.style.removeProperty('--back-to-top-lift');
+                    return;
+                }
+                btn.style.setProperty(
+                    '--back-to-top-lift',
+                    Math.round(entry.intersectionRect.height + 12) + 'px'
+                );
+            }, { threshold: [0, 0.1, 0.25, 0.5, 0.75, 1] });
+            liftObserver.observe(bottomChrome);
+        }
     }
 
     var entries = buildToc();

@@ -64,14 +64,6 @@
         var header = document.querySelector('.site-header');
         if (!header || header.querySelector('.theme-toggle')) return;
 
-        var nav = header.querySelector('.site-nav');
-        if (!nav) return;
-
-        var actions = document.createElement('div');
-        actions.className = 'site-header__actions';
-        nav.parentNode.insertBefore(actions, nav);
-        actions.appendChild(nav);
-
         var btn = document.createElement('button');
         btn.type = 'button';
         btn.className = 'theme-toggle';
@@ -85,7 +77,7 @@
             applyTheme(next);
         });
 
-        actions.appendChild(btn);
+        header.appendChild(btn);
     }
 
     applyTheme(getActiveTheme());

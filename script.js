@@ -62,10 +62,17 @@ document.addEventListener('DOMContentLoaded', () => {
         document.body.style.overflow = disable ? 'hidden' : '';
     };
 
-    const getScaleFactor = (element) => {
-        const modalWidth = (115 * 2) + 32 + 40;
-        return modalWidth / element.offsetWidth;
+    const syncAppHeight = () => {
+        const viewport = window.visualViewport;
+        const h = viewport ? viewport.height : window.innerHeight;
+        document.documentElement.style.setProperty('--app-height', `${Math.round(h)}px`);
     };
+    syncAppHeight();
+    window.addEventListener('resize', syncAppHeight);
+    if (window.visualViewport) {
+        window.visualViewport.addEventListener('resize', syncAppHeight);
+        window.visualViewport.addEventListener('scroll', syncAppHeight);
+    }
 
     // ========== Modal Handlers ==========
     const handleFolderClick = (targetModal) => {
@@ -99,22 +106,27 @@ document.addEventListener('DOMContentLoaded', () => {
         content.className = 'element-modal-content';
         
         const clone = element.cloneNode(true);
-        clone.style.transform = `scale(${getScaleFactor(element)})`;
-        
-        // Handle labels (keep existing label logic)
+        clone.removeAttribute('tabindex');
+        clone.removeAttribute('role');
+        clone.style.width = '100%';
+        clone.style.height = '100%';
+        clone.style.transform = 'none';
+
+        const cover = document.createElement('div');
+        cover.className = 'element-modal-cover';
+        cover.appendChild(clone);
+
         const wrapper = element.closest('.element-wrapper, .modal-element-wrapper');
         const fullName = element.getAttribute('data-full-name');
         const label = fullName || wrapper.querySelector('.element-label, .modal-element-label').textContent;
-        
+
         const labelElement = document.createElement('div');
         labelElement.className = 'scaled-element-label';
 
-        // If it's a full name (nature sounds), check if it needs splitting
         if (fullName) {
-            // Create temporary span to measure text width
             const tempSpan = document.createElement('span');
             tempSpan.style.visibility = 'hidden';
-            tempSpan.style.fontSize = '1.8rem';  // Smaller font size for nature sounds
+            tempSpan.style.fontSize = '1.8rem';
             tempSpan.style.whiteSpace = 'nowrap';
             tempSpan.textContent = label;
             document.body.appendChild(tempSpan);
@@ -122,29 +134,26 @@ document.addEventListener('DOMContentLoaded', () => {
             const textWidth = tempSpan.offsetWidth;
             document.body.removeChild(tempSpan);
 
-            labelElement.style.fontSize = '1.8rem';  // Set smaller font size
-            
-            // If text is wider than 95% viewport
+            labelElement.style.fontSize = '1.8rem';
+
             if (textWidth > window.innerWidth * 0.95) {
                 const words = label.split(' ');
-                
-                // For very small screens, split into three lines
+
                 if (textWidth > window.innerWidth * 1.4) {
                     const third = Math.floor(words.length / 3);
                     const firstLine = words.slice(0, third).join(' ');
                     const secondLine = words.slice(third, third * 2).join(' ');
                     const thirdLine = words.slice(third * 2).join(' ');
-                    
-                    labelElement.style.top = '-120px';  // More space for three lines
+
+                    labelElement.style.top = '-120px';
                     labelElement.style.lineHeight = '1.2';
                     labelElement.innerHTML = `${firstLine}<br>${secondLine}<br>${thirdLine}`;
                 } else {
-                    // Split into two lines
                     const middle = Math.floor(words.length / 2);
                     const firstLine = words.slice(0, middle).join(' ');
                     const secondLine = words.slice(middle).join(' ');
-                    
-                    labelElement.style.top = '-85px';  // Space for two lines
+
+                    labelElement.style.top = '-85px';
                     labelElement.style.lineHeight = '1.2';
                     labelElement.innerHTML = `${firstLine}<br>${secondLine}`;
                 }
@@ -318,12 +327,17 @@ document.addEventListener('DOMContentLoaded', () => {
         learnMore.textContent = 'Learn more';
         learnMore.addEventListener('click', (e) => e.stopPropagation());
         
-        // Append in correct order
         content.appendChild(labelElement);
-        content.appendChild(clone);
+        content.appendChild(cover);
         content.appendChild(learnMore);
-        content.appendChild(iconsContainer);
+
+        const dismissGap = document.createElement('div');
+        dismissGap.className = 'element-modal-dismiss';
+        dismissGap.setAttribute('aria-hidden', 'true');
+
         elementModal.appendChild(content);
+        elementModal.appendChild(dismissGap);
+        elementModal.appendChild(iconsContainer);
         
         return elementModal;
     };
@@ -348,21 +362,24 @@ document.addEventListener('DOMContentLoaded', () => {
         toggleScroll(true);
 
         elementModal.addEventListener('click', (e) => {
-            if (e.target === elementModal) {
-                elementModal.remove();
-                
-                // Check if any folder modal is still open before enabling scroll
-                const folderStillOpen = document.querySelector('.modal.show');
-                if (!folderStillOpen) {
-                    toggleScroll(false);
-                }
-                
-                // Restore level 2 effects if we were in the second folder
-                if (wasInnerFolderOpen) {
-                    openInnerFolder.style.backgroundColor = '';
-                    openInnerFolder.style.backdropFilter = '';
-                    openInnerFolder.style.webkitBackdropFilter = '';
-                }
+            const onDismissArea =
+                e.target === elementModal ||
+                (e.target && e.target.classList && e.target.classList.contains('element-modal-dismiss'));
+            if (!onDismissArea) return;
+
+            elementModal.remove();
+
+            // Check if any folder modal is still open before enabling scroll
+            const folderStillOpen = document.querySelector('.modal.show');
+            if (!folderStillOpen) {
+                toggleScroll(false);
+            }
+
+            // Restore level 2 effects if we were in the second folder
+            if (wasInnerFolderOpen) {
+                openInnerFolder.style.backgroundColor = '';
+                openInnerFolder.style.backdropFilter = '';
+                openInnerFolder.style.webkitBackdropFilter = '';
             }
         });
     };
