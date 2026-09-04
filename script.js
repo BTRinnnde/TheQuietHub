@@ -13,8 +13,9 @@ document.addEventListener('DOMContentLoaded', () => {
     innerFolder.style.webkitTapHighlightColor = 'transparent';
     // Remove blue highlight from platform icons
     document.addEventListener('click', (e) => {
-        if (e.target.classList.contains('platform-icon')) {
-            e.target.style.webkitTapHighlightColor = 'transparent';
+        const platformIcon = e.target.closest('.platform-icon');
+        if (platformIcon) {
+            platformIcon.style.webkitTapHighlightColor = 'transparent';
         }
     }, { capture: true });
 
@@ -167,145 +168,6 @@ document.addEventListener('DOMContentLoaded', () => {
         // Add platform icons with URLs based on element
         const iconsContainer = document.createElement('div');
         iconsContainer.className = 'platform-icons';
-        
-        const spotifyIcon = document.createElement('img');
-        spotifyIcon.src = 'images/spotify.webp';
-        spotifyIcon.onerror = () => { spotifyIcon.src = 'images/spotify.png'; };
-        spotifyIcon.width = 60;
-        spotifyIcon.height = 60;
-        spotifyIcon.decoding = 'async';
-        spotifyIcon.className = 'platform-icon';
-        spotifyIcon.alt = 'Open playlist on Spotify';
-        spotifyIcon.addEventListener('click', (e) => {
-            e.stopPropagation();
-            const elementId = element.getAttribute('data-element');
-            switch(elementId) {
-                case '1':  // Peaceful Piano
-                    window.open('https://open.spotify.com/playlist/51FY41cuYWtjoeuY90aTkw?si=1101d1a908434425', '_blank');
-                    break;
-                case '2':  // Elegant Jazz
-                    window.open('https://open.spotify.com/playlist/3OHE3VO1SApjBBqBc5ns8v?si=4445c994fce241d3', '_blank');
-                    break;
-                case '3':  // Lofi Dreams
-                    window.open('https://open.spotify.com/playlist/5FmNVvu1pSFCXSVSzQH9pr?si=7e7be45d6b404642', '_blank');
-                    break;
-                case 'modal1':  // White Noise
-                    window.open('https://open.spotify.com/playlist/0ki4X4mN7ggUrYcvvv6pq1?si=df0f61d8d91741c6', '_blank');
-                    break;
-                case 'modal2':  // Brown Noise
-                    window.open('https://open.spotify.com/playlist/3TPmuEYCxb84sRYH4KXPiF?si=b0fc2132a1cd4e26', '_blank');
-                    break;
-                case 'modal3':  // Pink Noise
-                    window.open('https://open.spotify.com/playlist/606f0E4BDtBtWAO9SjO7BM?si=00a8c1e6235d4d17', '_blank');
-                    break;
-                case 'modal4':  // Forest
-                    window.open('https://open.spotify.com/playlist/4J9hDxbs08490A7BDS52lw?si=9fe35ff1a6f54781', '_blank');
-                    break;
-                case 'modal5':  // Creek
-                    window.open('https://open.spotify.com/playlist/4W7cNRDkx2I3Swy6zQtnMl?si=d335ca40e2614d8a', '_blank');
-                    break;
-                case 'modal6':  // Rain
-                    window.open('https://open.spotify.com/playlist/6eAkOpgDdauoC53IBkMKkD?si=613c0cdb4d5842e9', '_blank');
-                    break;
-                case 'modal7':  // Thunder
-                    window.open('https://open.spotify.com/playlist/2ivC5Xlo0rXsUM8j38vufy?si=4be0794be7ee4479', '_blank');
-                    break;
-            }
-        });
-        
-        const youtubeIcon = document.createElement('img');
-        youtubeIcon.src = 'images/youtube.webp';
-        youtubeIcon.onerror = () => { youtubeIcon.src = 'images/youtube.png'; };
-        youtubeIcon.width = 60;
-        youtubeIcon.height = 60;
-        youtubeIcon.decoding = 'async';
-        youtubeIcon.className = 'platform-icon';
-        youtubeIcon.alt = 'Open playlist on YouTube Music';
-        youtubeIcon.addEventListener('click', (e) => {
-            e.stopPropagation();
-            const elementId = element.getAttribute('data-element');
-            switch(elementId) {
-                case '1':  // Peaceful Piano
-                    window.open('https://music.youtube.com/playlist?list=PLbeAGNc9R54fayVupFaxlfRU91v6xQw_a', '_blank');
-                    break;
-                case '2':  // Elegant Jazz
-                    window.open('https://music.youtube.com/playlist?list=PLbeAGNc9R54dENbyCekPMHI9Ptt95zHFD&feature=shared', '_blank');
-                    break;
-                case '3':  // Lofi Dreams
-                    window.open('https://music.youtube.com/playlist?list=PLbeAGNc9R54f524vMstaf4GTPpoTQF1SP&feature=shared', '_blank');
-                    break;
-                case 'modal1':  // White Noise
-                    window.open('https://music.youtube.com/playlist?list=PLbeAGNc9R54fYV6kSiwRr74EvtwlBSA5c&feature=shared', '_blank');
-                    break;
-                case 'modal2':  // Brown Noise
-                    window.open('https://music.youtube.com/playlist?list=PLbeAGNc9R54d82SmgIUMQcVj6-2TtSaQS&feature=shared', '_blank');
-                    break;
-                case 'modal3':  // Pink Noise
-                    window.open('https://music.youtube.com/playlist?list=PLbeAGNc9R54fIynp_4WdkFwE1fcFXszTb&feature=shared', '_blank');
-                    break;
-                case 'modal4':  // Forest
-                    window.open('https://music.youtube.com/playlist?list=PLbeAGNc9R54fhassniXp2M_P_KxerUBqw&feature=shared', '_blank');
-                    break;
-                case 'modal5':  // Creek
-                    window.open('https://music.youtube.com/playlist?list=PLbeAGNc9R54cwstgvj1FQAwZWzo9uKeAr&feature=shared', '_blank');
-                    break;
-                case 'modal6':  // Rain
-                    window.open('https://music.youtube.com/playlist?list=PLbeAGNc9R54cLk4ygJ5ES4VH-_RV7Q-Ys&feature=shared', '_blank');
-                    break;
-                case 'modal7':  // Thunder
-                    window.open('https://music.youtube.com/playlist?list=PLbeAGNc9R54cZqRKtnHLfkq92h-2TSBYG&feature=shared', '_blank');
-                    break;
-            }
-        });
-        
-        const appleIcon = document.createElement('img');
-        appleIcon.src = 'images/apple.webp';
-        appleIcon.onerror = () => { appleIcon.src = 'images/apple.png'; };
-        appleIcon.width = 60;
-        appleIcon.height = 60;
-        appleIcon.decoding = 'async';
-        appleIcon.className = 'platform-icon';
-        appleIcon.alt = 'Open playlist on Apple Music';
-        appleIcon.addEventListener('click', (e) => {
-            e.stopPropagation();
-            const elementId = element.getAttribute('data-element');
-            switch(elementId) {
-                case '1':  // Peaceful Piano
-                    window.open('https://music.apple.com/no/playlist/peaceful-piano/pl.u-oZylD6gsGlJWPP3', '_blank');
-                    break;
-                case '2':  // Gentle Jazz
-                    window.open('https://music.apple.com/no/playlist/gentle-jazz/pl.u-xlyNE32CJDL4XXA', '_blank');
-                    break;
-                case '3':  // Lofi Dreams
-                    window.open('https://music.apple.com/no/playlist/lofi-dreams/pl.u-kv9l2aJTJVZrXXv', '_blank');
-                    break;
-                case 'modal1':  // White Noise
-                    window.open('https://music.apple.com/no/playlist/white-noise/pl.u-KVXBkPPFLRWrzzv', '_blank');
-                    break;
-                case 'modal2':  // Brown Noise
-                    window.open('https://music.apple.com/no/playlist/brown-noise/pl.u-8aAVZy9IvL2zNNX', '_blank');
-                    break;
-                case 'modal3':  // Pink Noise
-                    window.open('https://music.apple.com/no/playlist/pink-noise/pl.u-oZylD0lTGlJWPP3', '_blank');
-                    break;
-                case 'modal4':  // Forest
-                    window.open('https://music.apple.com/no/playlist/relaxing-forest-ambience/pl.u-oZylD1esGlJWPP3', '_blank');
-                    break;
-                case 'modal5':  // Creek
-                    window.open('https://music.apple.com/no/playlist/soothing-creek-sounds/pl.u-WabZv4PSel2aWWE', '_blank');
-                    break;
-                case 'modal6':  // Rain
-                    window.open('https://music.apple.com/no/playlist/gentle-rainstorm-sounds/pl.u-8aAVZ5jHvL2zNNX', '_blank');
-                    break;
-                case 'modal7':  // Thunder
-                    window.open('https://music.apple.com/no/playlist/relaxing-thunderstorm-sounds/pl.u-NpXmze4t4gKovvl', '_blank');
-                    break;
-            }
-        });
-        
-        iconsContainer.appendChild(spotifyIcon);
-        iconsContainer.appendChild(youtubeIcon);
-        iconsContainer.appendChild(appleIcon);
 
         const playlistPages = {
             '1': '/playlists/peaceful-piano/',
@@ -321,6 +183,112 @@ document.addEventListener('DOMContentLoaded', () => {
         };
 
         const elementId = element.getAttribute('data-element');
+        const playlistSlug = (playlistPages[elementId] || '').replace(/^\/playlists\/|\/$/g, '');
+
+        const platformUrls = {
+            '1': {
+                spotify: 'https://open.spotify.com/playlist/51FY41cuYWtjoeuY90aTkw?si=1101d1a908434425',
+                youtube: 'https://music.youtube.com/playlist?list=PLbeAGNc9R54fayVupFaxlfRU91v6xQw_a',
+                apple: 'https://music.apple.com/no/playlist/peaceful-piano/pl.u-oZylD6gsGlJWPP3'
+            },
+            '2': {
+                spotify: 'https://open.spotify.com/playlist/3OHE3VO1SApjBBqBc5ns8v?si=4445c994fce241d3',
+                youtube: 'https://music.youtube.com/playlist?list=PLbeAGNc9R54dENbyCekPMHI9Ptt95zHFD&feature=shared',
+                apple: 'https://music.apple.com/no/playlist/gentle-jazz/pl.u-xlyNE32CJDL4XXA'
+            },
+            '3': {
+                spotify: 'https://open.spotify.com/playlist/5FmNVvu1pSFCXSVSzQH9pr?si=7e7be45d6b404642',
+                youtube: 'https://music.youtube.com/playlist?list=PLbeAGNc9R54f524vMstaf4GTPpoTQF1SP&feature=shared',
+                apple: 'https://music.apple.com/no/playlist/lofi-dreams/pl.u-kv9l2aJTJVZrXXv'
+            },
+            'modal1': {
+                spotify: 'https://open.spotify.com/playlist/0ki4X4mN7ggUrYcvvv6pq1?si=df0f61d8d91741c6',
+                youtube: 'https://music.youtube.com/playlist?list=PLbeAGNc9R54fYV6kSiwRr74EvtwlBSA5c&feature=shared',
+                apple: 'https://music.apple.com/no/playlist/white-noise/pl.u-KVXBkPPFLRWrzzv'
+            },
+            'modal2': {
+                spotify: 'https://open.spotify.com/playlist/3TPmuEYCxb84sRYH4KXPiF?si=b0fc2132a1cd4e26',
+                youtube: 'https://music.youtube.com/playlist?list=PLbeAGNc9R54d82SmgIUMQcVj6-2TtSaQS&feature=shared',
+                apple: 'https://music.apple.com/no/playlist/brown-noise/pl.u-8aAVZy9IvL2zNNX'
+            },
+            'modal3': {
+                spotify: 'https://open.spotify.com/playlist/606f0E4BDtBtWAO9SjO7BM?si=00a8c1e6235d4d17',
+                youtube: 'https://music.youtube.com/playlist?list=PLbeAGNc9R54fIynp_4WdkFwE1fcFXszTb&feature=shared',
+                apple: 'https://music.apple.com/no/playlist/pink-noise/pl.u-oZylD0lTGlJWPP3'
+            },
+            'modal4': {
+                spotify: 'https://open.spotify.com/playlist/4J9hDxbs08490A7BDS52lw?si=9fe35ff1a6f54781',
+                youtube: 'https://music.youtube.com/playlist?list=PLbeAGNc9R54fhassniXp2M_P_KxerUBqw&feature=shared',
+                apple: 'https://music.apple.com/no/playlist/relaxing-forest-ambience/pl.u-oZylD1esGlJWPP3'
+            },
+            'modal5': {
+                spotify: 'https://open.spotify.com/playlist/4W7cNRDkx2I3Swy6zQtnMl?si=d335ca40e2614d8a',
+                youtube: 'https://music.youtube.com/playlist?list=PLbeAGNc9R54cwstgvj1FQAwZWzo9uKeAr&feature=shared',
+                apple: 'https://music.apple.com/no/playlist/soothing-creek-sounds/pl.u-WabZv4PSel2aWWE'
+            },
+            'modal6': {
+                spotify: 'https://open.spotify.com/playlist/6eAkOpgDdauoC53IBkMKkD?si=613c0cdb4d5842e9',
+                youtube: 'https://music.youtube.com/playlist?list=PLbeAGNc9R54cLk4ygJ5ES4VH-_RV7Q-Ys&feature=shared',
+                apple: 'https://music.apple.com/no/playlist/gentle-rainstorm-sounds/pl.u-8aAVZ5jHvL2zNNX'
+            },
+            'modal7': {
+                spotify: 'https://open.spotify.com/playlist/2ivC5Xlo0rXsUM8j38vufy?si=4be0794be7ee4479',
+                youtube: 'https://music.youtube.com/playlist?list=PLbeAGNc9R54cZqRKtnHLfkq92h-2TSBYG&feature=shared',
+                apple: 'https://music.apple.com/no/playlist/relaxing-thunderstorm-sounds/pl.u-NpXmze4t4gKovvl'
+            }
+        };
+
+        function createPlatformLink(platform, href, src, fallback, label) {
+            const link = document.createElement('a');
+            link.href = href;
+            link.target = '_blank';
+            link.rel = 'noopener noreferrer';
+            link.className = 'platform-icon';
+            link.dataset.streamPlatform = platform;
+            if (playlistSlug) link.dataset.streamPlaylist = playlistSlug;
+            link.setAttribute('aria-label', label);
+            link.addEventListener('click', (e) => e.stopPropagation());
+
+            const img = document.createElement('img');
+            img.src = src;
+            img.onerror = () => { img.src = fallback; };
+            img.width = 60;
+            img.height = 60;
+            img.decoding = 'async';
+            img.alt = '';
+            link.appendChild(img);
+            return link;
+        }
+
+        const urls = platformUrls[elementId] || {};
+        if (urls.spotify) {
+            iconsContainer.appendChild(createPlatformLink(
+                'spotify',
+                urls.spotify,
+                'images/spotify.webp',
+                'images/spotify.png',
+                'Open playlist on Spotify'
+            ));
+        }
+        if (urls.youtube) {
+            iconsContainer.appendChild(createPlatformLink(
+                'youtube-music',
+                urls.youtube,
+                'images/youtube.webp',
+                'images/youtube.png',
+                'Open playlist on YouTube Music'
+            ));
+        }
+        if (urls.apple) {
+            iconsContainer.appendChild(createPlatformLink(
+                'apple-music',
+                urls.apple,
+                'images/apple.webp',
+                'images/apple.png',
+                'Open playlist on Apple Music'
+            ));
+        }
+
         const learnMore = document.createElement('a');
         learnMore.className = 'element-modal-learn-more';
         learnMore.href = playlistPages[elementId] || '/';
